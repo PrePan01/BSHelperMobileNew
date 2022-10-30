@@ -1,0 +1,42 @@
+.f {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.container {
+    color: white;
+    justify-content: space-between;
+}
+.mode-icon {
+    height: 40px;
+    margin-right: 2px;
+}
+.brawler-warp {
+    display: flex;
+    align-items: center;
+    width: 25vw;
+    justify-content: space-between;
+}
+.brawler-icon {
+    height: 50px;
+}
+.map {
+    width: 25vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    word-break:keep-all;
+    font-size: 16px;
+}
+.result {
+    text-align: right;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: '黑体';
+    text-shadow: rgb(40,44,52) 1px 0 0, rgb(40,44,52) 0 1px 0, rgb(40,44,52) -1px 0 0, rgb(40,44,52) 0 -1px 0;
+}
+.time {
+    font-size: 10px;
+    line-height: 12px;
+    text-align: right;
+}

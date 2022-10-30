@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'djvb';
+    src: url("./DEJAVUSANSYUANTIMONO-BOLDITALIC.TTF");
+}
+@font-face {
+    font-family: 'djv';
+    src: url("./DEJAVUSANSYUANTIMONO-ITALIC.TTF");
+}
+
+@font-face {
+    font-family: 'lato';
+    src: url("./LATO-REGULAR.TTF");
+}

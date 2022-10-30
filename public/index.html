@@ -5,7 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title>战绩小助手 - 荒野乱斗国际服战绩查询</title>
+    <style>
+	    * {
+		    margin: 0;
+		    padding: 0;
+		    --van-collapse-item-content-background-color: transparent;
+		    --van-cell-background-color: transparent;
+		    --van-collapse-item-content-text-color: white;
+		    --van-collapse-item-title-disabled-color: white;
+		    --van-cell-right-icon-color: rgba(255,255,255,0.7);
+		    --van-collapse-item-content-padding: 0 16px;
+		    /*--van-cell-vertical-padding: 0;*/
+		    /*--van-cell-horizontal-padding: 0;*/
+	    }
+    </style>
   </head>
   <body>
     <noscript>
@@ -13,5 +27,15 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+  <script>
+	  // 百度统计
+	  var _hmt = _hmt || [];
+	  (function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?5be7597fdb8f7699d04848d6ff995f85";
+		  var s = document.getElementsByTagName("script")[0];
+		  s.parentNode.insertBefore(hm, s);
+	  })();
+  </script>
   </body>
 </html>

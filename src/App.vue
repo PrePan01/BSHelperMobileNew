@@ -1,30 +1,53 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <n-message-provider :placement="'top-left'">
+    <MessageApi />
+  </n-message-provider>
+  <n-config-provider :theme-overrides="themeOverrides">
+    <div class="appwarp">
+      <router-view></router-view>
+    </div>
+  </n-config-provider>
 </template>
 
+<script setup>
+import MessageApi from "./components/Message-api.vue";
+import { NMessageProvider, NConfigProvider } from "naive-ui";
+import {useStore} from "@/store";
+const store = useStore()
+
+const themeOverrides = {
+  Slider: {
+    fillColor: '#FFCC01',
+    fillColorHover: '#FE9901',
+    handleSize: '10px',
+  }
+}
+</script>
+
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+:root {
+  --victory: rgb(103,194,58);
+  --defeat: rgb(245,108,108);
+  --draw: rgb(64,158,255);
+  --mvp: rgb(255,224,88);
+  --lv11: rgb(255,204,1);
 }
-
-nav {
-  padding: 30px;
+@keyframes bgmove {
+  from {
+    background-position:0 0;
+  }
+  to {
+    background-position:1000px -1000px;
+  }
 }
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+.appwarp {
+  width: 100vw;
+  height: 100vh;
+  background: rgb(42, 89, 219) url("./assets/bg_ioc.png") repeat;
+  background-size: 60%;
+  animation: bgmove 80s infinite;
+  color: white;
+  overflow: scroll;
 }
 </style>

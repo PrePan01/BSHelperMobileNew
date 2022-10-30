@@ -1,19 +1,65 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Start from '../views/Start'
+import Profile from '../views/Profile'
+import Update from '../views/Update'
+import Battlelogs from '../views/Battlelogs'
+import More from '../views/More'
+import Skins from '../views/Skins'
+import Joinus from '../views/Joinus'
+import ClubSearch from "@/views/ClubSearch";
+import Events from "@/views/Events";
+import EventDetail from "@/views/EventDetail";
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'start',
+    component: Start
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/profile',
+    name: 'profile',
+    component: Profile
+  },
+  {
+    path: '/update',
+    name: 'update',
+    component: Update
+  },
+  {
+    path: '/battlelogs',
+    name: 'battlelogs',
+    component: Battlelogs
+  },
+  {
+    path: '/more',
+    name: 'more',
+    component: More
+  },
+  {
+    path: '/skins',
+    name: 'skins',
+    component: Skins
+  },
+  {
+    path: '/join',
+    name: 'join',
+    component: Joinus
+  },
+  {
+    path: '/club',
+    name: 'club',
+    component: ClubSearch
+  },
+  {
+    path: '/events',
+    name: 'events',
+    component: Events
+  },
+  {
+    path: '/detail',
+    name: 'detail',
+    component: EventDetail,
   }
 ]
 
