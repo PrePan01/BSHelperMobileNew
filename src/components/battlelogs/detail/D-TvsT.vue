@@ -24,7 +24,7 @@
       <img src="../../../assets/vs.png" alt="" class="vs">
       <div>
         <p>{{battleDuration(battle.duration)}}</p>
-        <p>杯数 {{battle.trophyChange>0?'+':''}}{{battle.trophyChange}}</p>
+        <p>杯数 {{battle.trophyChange>=0?'+':''}}{{battle.trophyChange}}</p>
       </div>
     </div>
   </div>

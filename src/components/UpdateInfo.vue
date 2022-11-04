@@ -1,11 +1,11 @@
 <template>
   <div class="infoWarp">
     <h3 class="info">🎉新功能出现！</h3>
-    <h4 class="info">现在支持查看最近对战玩家的成分了！</h4>
+    <h4 class="info">天梯活动可以查看队伍相关信息了！</h4>
     <video
         muted
         autoplay
-        src="https://prepan.top/updateInfo/update1022.mp4"
+        src="https://prepan.top/updateInfo/update1101.mp4"
         style="width: 100%"
         loop
     ></video>
@@ -29,6 +29,10 @@ h4 {
 }
 .info {
   color: #2A59DB;
+  text-align: center
+}
+.hisinfo {
+  color: black;
   text-align: center
 }
 </style>

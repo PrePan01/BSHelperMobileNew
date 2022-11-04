@@ -1,5 +1,10 @@
 <template>
-  <div class="eventsWarp">
+  <n-spin size="large" v-if="!eventData.active" class="spin">
+    <template #description>
+      正在获取当前对战...
+    </template>
+  </n-spin>
+  <div class="eventsWarp" v-if="eventData.active">
     <h2 class="t-title">正在进行</h2>
     <div v-for="(item, index) in eventData.active" :key="item.map.name">
       <EventTitle
@@ -10,7 +15,6 @@
           @click="detail(['active', index])"
       />
     </div>
-    <!--@click="detail([item.map.gameMode.name, item.map.name, item.map.stats])"-->
     <h2 class="t-title">即将到来</h2>
     <div v-for="(item, index) in eventData.upcoming" :key="item.map.name">
       <EventTitle
@@ -26,6 +30,7 @@
 
 <script setup>
 import EventTitle from "@/components/EventTitle";
+import {NSpin} from 'naive-ui'
 import axios from "axios";
 import {reactive} from "vue";
 import {useStore} from "@/store";
@@ -52,6 +57,12 @@ axios({
 </script>
 
 <style scoped>
+.spin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 .t-title {
   margin-top: 30px;
 }

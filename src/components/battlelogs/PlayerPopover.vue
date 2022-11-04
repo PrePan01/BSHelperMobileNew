@@ -47,7 +47,6 @@ onMounted(() => {
     url: `/playStatsApi/${searchTag}`,
     method: 'GET'
   }).then(res => {
-    console.log(res.data)
     playerData.value = res.data
     showSpin.value = false
   })

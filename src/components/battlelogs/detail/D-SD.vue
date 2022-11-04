@@ -2,18 +2,18 @@
   <div class="info">
     <p>{{BattleTimeTrans(battleTime)[0]}}</p>
     <p>{{BattleTimeTrans(battleTime)[1]}}</p>
-    <p>杯数 {{battle.trophyChange>0?'+':''}}{{battle.trophyChange}}</p>
+    <p>杯数 {{battle.trophyChange>=0?'+':''}}{{battle.trophyChange}}</p>
   </div>
   <div class="sdwarp">
-    <n-popover trigger="manual" v-for="p in item" :key="p.tag" :show="showPopover && showPopoverIndex === p.tag">
+    <n-popover trigger="manual" v-for="p in battle.players" :key="p.tag" :show="showPopover && showPopoverIndex === p.tag">
       <template #trigger>
         <Player
-            v-for="p in battle.players"
             :player="p"
             :key="p.tag"
             class="player"
             :trophies="p.brawler.trophies"
-        ></Player>
+            @click="showPop(p.tag)"
+        />
       </template>
       <div>
         <PlayerPopover :data="p"/>
@@ -27,10 +27,17 @@ import {NPopover} from 'naive-ui'
 import Player from '../Player'
 import PlayerPopover from '../PlayerPopover'
 import BattleTimeTrans from "@/utils/battle/BattleTimeTrans";
-import {battleDuration, battleTypeTrans} from '@/utils/battle/BattleResult'
+import {ref} from "vue";
 
 let props = defineProps(['data'])
 let {battle, battleTime} = props.data
+
+let showPopover = ref(false)
+let showPopoverIndex = ref()
+function showPop(data) {
+  showPopover.value = !(showPopover.value)
+  showPopoverIndex.value = data
+}
 
 </script>
 

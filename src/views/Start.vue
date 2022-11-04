@@ -41,12 +41,13 @@ const router = useRouter()
 
 const VanDialog = Dialog.Component;
 let showUpdateInfo = ref(true)
-if(localStorage.getItem('update1022') === 'false') {
+if(localStorage.getItem('update1101') === 'false') {
   showUpdateInfo.value = false
 }
 function closeUpdate() {
   showUpdateInfo.value = false
-  localStorage.setItem('update1022', 'false')
+  localStorage.setItem('update1101', 'false')
+  localStorage.removeItem('update1022')
 }
 
 let history = localStorage.getItem('search')

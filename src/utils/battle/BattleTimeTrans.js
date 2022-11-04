@@ -1,8 +1,6 @@
 import dayjs from 'dayjs/esm/index.js'
-import relativeTime from 'dayjs/plugin/relativeTime';
-import 'dayjs/locale/zh-cn'
-dayjs.locale('zh-cn') // use locale
-dayjs.extend(relativeTime);
+import zh from 'dayjs/locale/zh-cn'
+dayjs.locale(zh)
 
 export default function (time) {
     let utcDate = time.replace(/:/g,'').replace(/-/g,'')
@@ -13,9 +11,6 @@ export default function (time) {
     let minute = utcDate.slice(11, 13)
     let second = utcDate.slice(13, 15)
     let new_datetime = `${year}-${month}-${day} ${hour}:${minute}:${second}`
-    let timestamp = new Date(Date.parse(new_datetime));
-    timestamp = timestamp.getTime();
-    timestamp = timestamp / 1000;
-    timestamp = timestamp + 8 * 60 * 60;
+    let timestamp = (Date.parse(new_datetime) / 1000) + 8 * 60 * 60;
     return [dayjs(timestamp *1000).format("YYYY-MM-DD"),dayjs(timestamp *1000).format("HH:mm:ss"),];
 }

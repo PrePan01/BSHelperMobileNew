@@ -104,7 +104,7 @@ function handleSelect(i) {
 
 const activeNames = ref(['1']);
 
-let modes = getCurrentInstance()?.appContext.config.globalProperties.$modes
+// let modes = getCurrentInstance()?.appContext.config.globalProperties.$modes
 const tModes = ['duoShowdown', 'soloShowdown']
 
 function bLeft(item) {

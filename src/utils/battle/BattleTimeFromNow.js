@@ -13,9 +13,6 @@ export default function (time) {
     let minute = utcDate.slice(11, 13)
     let second = utcDate.slice(13, 15)
     let new_datetime = `${year}-${month}-${day} ${hour}:${minute}:${second}`
-    let timestamp = new Date(Date.parse(new_datetime));
-    timestamp = timestamp.getTime();
-    timestamp = timestamp / 1000;
-    timestamp = timestamp + 8 * 60 * 60;
+    let timestamp = (Date.parse(new_datetime) / 1000) + 8 * 60 * 60;
     return dayjs(dayjs(timestamp *1000).format("YYYY-MM-DD HH:mm:ss")).fromNow();
 }
