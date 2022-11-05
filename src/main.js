@@ -10,7 +10,7 @@ let app = createApp(App)
 
 // 全局变量
 app.config.globalProperties.$modes =
-    ['gemGrab', 'brawlBall', 'bounty', 'heist', 'hotZone', 'siege', 'knockout', 'soloShowdown', 'duoShowdown', 'duels', 'wipeout', 'payload', 'basketBrawl', 'invasion', 'hunters', 'lastStand']
+    ['gemGrab', 'brawlBall', 'bounty', 'heist', 'hotZone', 'siege', 'knockout', 'soloShowdown', 'duoShowdown', 'duels', 'wipeout', 'payload', 'basketBrawl', 'invasion', 'hunters', 'lastStand', 'bossFight']
 
 
 app.use(router).use(createPinia()).mount('#app')

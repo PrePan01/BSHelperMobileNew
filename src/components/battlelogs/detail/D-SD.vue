@@ -2,7 +2,7 @@
   <div class="info">
     <p>{{BattleTimeTrans(battleTime)[0]}}</p>
     <p>{{BattleTimeTrans(battleTime)[1]}}</p>
-    <p>杯数 {{battle.trophyChange>=0?'+':''}}{{battle.trophyChange}}</p>
+    <p v-if="battle.trophyChange">杯数 {{battle.trophyChange>=0?'+':''}}{{battle.trophyChange}}</p>
   </div>
   <div class="sdwarp">
     <n-popover trigger="manual" v-for="p in battle.players" :key="p.tag" :show="showPopover && showPopoverIndex === p.tag">

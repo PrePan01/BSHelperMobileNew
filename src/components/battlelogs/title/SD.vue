@@ -12,7 +12,9 @@
       </p>
     </div>
     <div>
-      <div class="result" :style="{'color': battle.rank<=4?'rgb(103,194,58)':'rgb(245,108,108)'}">#{{battle.rank}}</div>
+      <div class="result" :style="{'color': battle.rank>4?'rgb(245,108,108)':'rgb(103,194,58)'}">
+        {{battle.rank?'#':''}}{{battle.rank || result(battle.result)}}
+      </div>
       <p class="time">{{TTrans(battleTime)}}</p>
     </div>
   </div>
@@ -27,6 +29,7 @@ import {useStore} from "@/store";
 const store = useStore()
 let props = defineProps(['data'])
 let {battleTime, event, battle} = props.data
+import {result} from '@/utils/battle/BattleResult'
 
 let myBrawler = computed(() => {
   for(let p of battle.players) {

@@ -1,5 +1,4 @@
 import {defineStore} from "pinia";
-import {toRaw} from "vue";
 import axios from "axios";
 
 export const useStore = defineStore('main', {
@@ -8,7 +7,8 @@ export const useStore = defineStore('main', {
             profile: {},
             battlelogs: [],
             showSpin: false,
-            eventDetail: []
+            eventDetail: [],
+            router: void 0
         }
     },
     actions: {
@@ -34,6 +34,7 @@ export const useStore = defineStore('main', {
                     }
                     else this.battlelogs = data.data.items
                     this.showSpin = false
+                    this.router.push('/profile')
                 }).catch(e => {
                     this.showSpin = false
                     window.$message.error('最近对战加载失败，请重试！')

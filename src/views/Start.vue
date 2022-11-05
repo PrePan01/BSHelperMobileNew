@@ -1,43 +1,50 @@
 <template>
-  <div class="warp">
-    <van-dialog
-        :show="showUpdateInfo"
-        confirm-button-color="#2A59DB"
-        confirm-button-text="知道啦"
-        @confirm="closeUpdate"
-    >
-      <UpdateInfo/>
-    </van-dialog>
-    <img src="../assets/logo.png" alt="" class="logo">
-    <WordSwiper class="ws"/>
-    <div class="searchWarp">
-      <input type="text" class="searchInput" v-model="tag">
-      <span class="searchBtn" @click="search">搜索</span>
+  <NSpin :show="store.showSpin" stroke="rgb(255,255,1)" :size="60">
+    <div class="warp">
+      <van-dialog
+          :show="showUpdateInfo"
+          confirm-button-color="#2A59DB"
+          confirm-button-text="知道啦"
+          @confirm="closeUpdate"
+      >
+        <UpdateInfo/>
+      </van-dialog>
+      <img src="../assets/logo.png" alt="" class="logo">
+      <WordSwiper class="ws"/>
+      <div class="searchWarp">
+        <input type="text" class="searchInput" v-model="tag">
+        <span class="searchBtn" @click="search('cur')">搜索</span>
+      </div>
+      <div class="history" v-if="history">
+        <span>是否想搜索：</span>
+        <n-button type="warning" ghost @click="search('his')">
+          {{history}}
+        </n-button>
+      </div>
+      <div class="more">
+        <div @click="$router.push('/more')">直接进入</div>
+        <div @click="$router.push('/update')">更新日志/公告</div>
+      </div>
     </div>
-    <div class="history" v-if="history">
-      <span>是否想搜索：</span>
-      <n-button type="warning" ghost @click="search">
-        {{history}}
-      </n-button>
-    </div>
-    <div class="more">
-      <div @click="$router.push('/more')">直接进入</div>
-      <div @click="$router.push('/update')">更新日志/公告</div>
-    </div>
-  </div>
+    <template #description>
+      <div class="spinInfo">
+        正在获取远方的数据
+      </div>
+    </template>
+  </NSpin>
 </template>
 
 <script setup>
-import {NButton} from 'naive-ui'
+import {NButton, NSpin} from 'naive-ui'
 import WordSwiper from '../components/WordSwiper'
 import {ref} from "vue";
 let tag = ref()
 import {useStore} from "@/store";
 const store = useStore()
 import {useRouter} from 'vue-router'
+const router = useRouter()
 import {Dialog} from "vant";
 import UpdateInfo from "@/components/UpdateInfo";
-const router = useRouter()
 
 const VanDialog = Dialog.Component;
 let showUpdateInfo = ref(true)
@@ -52,17 +59,23 @@ function closeUpdate() {
 
 let history = localStorage.getItem('search')
 
-function search() {
+function search(type) {
   if(!history && tag.value === undefined) {
     window.$message.error('请输入玩家代码')
   } else {
     if(!history) {
       localStorage.setItem('search', tag.value)
     }
-    store.searchPlayer(history||tag.value)
-    router.push('/profile')
+    store.router = router
+    if(type === 'cur') {
+      store.searchPlayer(tag.value)
+    } else {
+      store.searchPlayer(history)
+    }
   }
 }
+
+let showSpin = ref(false)
 
 </script>
 
@@ -82,7 +95,7 @@ function search() {
   background-size: 60%;
   animation: bgmove 80s infinite;
   color: white;
-  overflow: scroll;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -145,6 +158,14 @@ function search() {
 .history {
   margin-top: 20px;
   text-align: center;
+  font-size: 16px;
+}
+.noticeBar {
+  margin-top: 30px;
+}
+.spinInfo {
+  color: rgb(255,255,1);
+  margin-top: 20px;
   font-size: 16px;
 }
 </style>

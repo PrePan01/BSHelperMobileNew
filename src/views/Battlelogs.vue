@@ -36,12 +36,12 @@
       >
         <div class="detail">
           <DDuoSD :data="item" v-if="item.battle.mode === 'duoShowdown'"></DDuoSD>
-          <DSD :data="item" v-if="item.battle.mode === 'soloShowdown'"></DSD>
+          <DSD :data="item" v-if="item.battle.mode === 'soloShowdown' || item.battle.mode === 'bossFight'"></DSD>
           <DTvsT :data="item" v-if="!tModes.includes(item.battle.mode)"></DTvsT>
         </div>
         <template #title>
           <DuoSD :data="item" v-if="item.battle.mode === 'duoShowdown'"></DuoSD>
-          <SD :data="item" v-if="item.battle.mode === 'soloShowdown'"></SD>
+          <SD :data="item" v-if="item.battle.mode === 'soloShowdown' || item.battle.mode === 'bossFight'"></SD>
           <TvsT :data="item" v-if="!tModes.includes(item.battle.mode)"></TvsT>
         </template>
       </CollapseItem>
@@ -105,7 +105,7 @@ function handleSelect(i) {
 const activeNames = ref(['1']);
 
 // let modes = getCurrentInstance()?.appContext.config.globalProperties.$modes
-const tModes = ['duoShowdown', 'soloShowdown']
+const tModes = ['duoShowdown', 'soloShowdown', 'bossFight']
 
 function bLeft(item) {
   if(item.battle.rank) {
