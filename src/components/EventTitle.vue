@@ -26,21 +26,21 @@ import {computed} from "vue";
 let props = defineProps(['mode', 'map', 'time'])
 let {mode, map, time} = props
 let modes =
-    ['Gem Grab', 'Brawl Ball', 'Bounty', 'Heist', 'Hot Zone', 'Siege', 'Knockout',
-      'Solo Showdown', 'Duo Showdown', 'Duels', 'Wipeout', 'Payload', 'BasketBrawl', 'Invasion', 'Hunters', 'Last Stand']
+    ['Gem-Grab', 'Brawl-Ball', 'Bounty', 'Heist', 'Hot-Zone', 'Siege', 'Knockout',
+      'Solo-Showdown', 'Duo-Showdown', 'Duels', 'Wipeout', 'Payload', 'BasketBrawl', 'Invasion', 'Hunters', 'Last-Stand']
 
 let bgc = computed(() => {
   let c
   switch (mode) {
-    case 'Gem Grab': { c = 'rgb(216,82,255)'; break }
-    case 'Brawl Ball': { c = 'rgb(154,177,253)'; break }
+    case 'Gem-Grab': { c = 'rgb(216,82,255)'; break }
+    case 'Brawl-Ball': { c = 'rgb(154,177,253)'; break }
     case 'Bounty': { c = 'rgb(0,206,254)'; break }
     case 'Heist': { c = 'rgb(247,131,28)'; break }
-    case 'Hot Zone': { c = 'rgb(226,59,79)'; break }
+    case 'Hot-Zone': { c = 'rgb(226,59,79)'; break }
     case 'Siege': { c = 'rgb(239,78,49)'; break }
     case 'Knockout': { c = 'rgb(247,131,28)'; break }
-    case 'Solo Showdown': { c = 'rgb(145,225,54)'; break }
-    case 'Duo Showdown': { c = 'rgb(145,225,54)'; break }
+    case 'Solo-Showdown': { c = 'rgb(145,225,54)'; break }
+    case 'Duo-Showdown': { c = 'rgb(145,225,54)'; break }
     case 'Duels': { c = 'rgb(48,148,249)'; break }
     case 'Wipeout': { c = 'rgb(252,215,249)'; break }
     case 'Payload': { c = 'rgb(184,238,251)'; break }
