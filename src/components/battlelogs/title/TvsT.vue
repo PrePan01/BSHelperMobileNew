@@ -16,11 +16,11 @@
         </Tag>
       </div>
       <p class="trophy__title">
-        <img src="@/assets/trophy_cur.png" alt="" style="width: 18px;">
-        <span>{{myBrawler[1]}}</span>
+        <img :src="require('@/assets/' + (['soloRanked', 'teamRanked'].includes(battle.type)?RankTrans(myBrawler[1])[1]:'trophy_cur') + '.png') " alt="">
+        <span>{{['soloRanked', 'teamRanked'].includes(battle.type)?RankTrans(myBrawler[1])[0]:myBrawler[1]}}</span>
       </p>
     </div>
-    <div>
+    <div class="result__warp">
       <p class="result" :style="{color: 'var(--' + battle.result + ')'}">{{result(battle.result)}}</p>
       <p class="time">{{TTrans(battleTime)}}</p>
     </div>
@@ -29,6 +29,7 @@
 
 <script setup>
 import '@/css/battleLogsTitle.css'
+import RankTrans from "@/utils/battle/RankTrans";
 import {NTag} from 'naive-ui'
 import { Tag } from 'vant';
 import {computed} from "vue";

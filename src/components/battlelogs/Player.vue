@@ -6,8 +6,8 @@
     </n-tag>
     <p class="name" :class="name === props.mvp?'mvp':name === myName?'me':''">{{name}}</p>
     <p class="trophy">
-      <img src="@/assets/trophy_cur.png" alt="" style="width: 18px;">
-      <span>{{trophies}}</span>
+      <img :src="require('@/assets/' + (['soloRanked', 'teamRanked'].includes(props.type)?RankTrans(trophies)[1]:'trophy_cur') + '.png') " alt="" style="width: 18px;margin-right: 2px">
+      <span>{{['soloRanked', 'teamRanked'].includes(props.type)?RankTrans(trophies)[0]:trophies}}</span>
     </p>
   </div>
 </template>
@@ -18,8 +18,9 @@ import {computed} from "vue";
 import {useStore} from "@/store";
 const store = useStore()
 const myName = store.profile.name
+import RankTrans from "@/utils/battle/RankTrans";
 
-let props = defineProps(['player', 'mvp', 'trophies'])
+let props = defineProps(['player', 'mvp', 'trophies', 'type'])
 let {brawler, tag, name} = props.player
 
 let powerColor = computed(() => {

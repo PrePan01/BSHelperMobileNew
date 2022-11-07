@@ -7,6 +7,7 @@
               :player="p"
               :mvp="battle.starPlayer?.name"
               :trophies="p.brawler.trophies"
+              :type="battle.type"
               class="player"
               @click="showPop(p.tag)"
           />

@@ -81,7 +81,8 @@
         </div>
       </li>
       <li class="li-item">
-        荣誉联赛结算后
+        <span>荣誉联赛结算后</span>
+        <SeasonCountdown/>
         <div class="trophyEnd">
           <div>
             <img src="../../assets/trophy_cur.png" alt="">
@@ -121,6 +122,7 @@ import trophyRanks from "@/utils/trophyRanks";
 let trophyranks = trophyRanks(brawlers)
 
 import trophyLeagueEnd from "@/utils/trophyLeagueEnd";
+import SeasonCountdown from '@/components/SeasonCountdown'
 let TLEnd = trophyLeagueEnd(brawlers)
 
 </script>

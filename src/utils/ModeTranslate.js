@@ -13,6 +13,7 @@ export default function (mode) {
         case 'Wipeout': { return 'Wipeout' }
         case 'Payload': { return 'Payload' }
         case 'BasketBrawl': { return '乱斗篮球' }
+        case 'Boss-Fight': { return '首领之战' }
         case 'Hunters': { return 'Hunters' }
         default: {return mode}
     }

@@ -14,11 +14,16 @@
 .brawler-warp {
     display: flex;
     align-items: center;
-    width: 25vw;
-    justify-content: space-between;
+    width: 130px;
+    justify-content: flex-start;
 }
 .brawler-icon {
     height: 50px;
+    margin-right: 4px;
+}
+.trophy__title img {
+    width: 18px;
+    margin-right: 2px;
 }
 .map {
     width: 25vw;
@@ -27,6 +32,9 @@
     white-space:nowrap;
     word-break:keep-all;
     font-size: 16px;
+}
+.result__warp {
+    width: 15vw;
 }
 .result {
     text-align: right;

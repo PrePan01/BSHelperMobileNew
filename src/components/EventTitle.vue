@@ -27,7 +27,7 @@ let props = defineProps(['mode', 'map', 'time'])
 let {mode, map, time} = props
 let modes =
     ['Gem-Grab', 'Brawl-Ball', 'Bounty', 'Heist', 'Hot-Zone', 'Siege', 'Knockout',
-      'Solo-Showdown', 'Duo-Showdown', 'Duels', 'Wipeout', 'Payload', 'BasketBrawl', 'Invasion', 'Hunters', 'Last-Stand']
+      'Solo-Showdown', 'Duo-Showdown', 'Duels', 'Wipeout', 'Payload', 'BasketBrawl', 'Invasion', 'Hunters', 'Last-Stand', 'Boss-Fight']
 
 let bgc = computed(() => {
   let c
@@ -46,6 +46,7 @@ let bgc = computed(() => {
     case 'Payload': { c = 'rgb(184,238,251)'; break }
     case 'BasketBrawl': { c = 'rgb(255,140,36)'; break }
     case 'Hunters': { c = 'rgb(253,187,33)'; break }
+    case 'Boss-Fight': { c = 'rgb(236,30,31)'; break }
     default: { c = 'rgb(47,196,249)'; break }
   }
   return {backgroundColor: c}

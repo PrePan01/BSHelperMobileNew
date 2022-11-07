@@ -11,7 +11,7 @@
         <span>{{myBrawler[1]}}</span>
       </p>
     </div>
-    <div>
+    <div class="result__warp">
       <div class="result" :style="{'color': battle.rank<=4?'rgb(103,194,58)':'rgb(245,108,108)'}">#{{battle.rank}}</div>
       <p class="time">{{TTrans(battleTime)}}</p>
     </div>
