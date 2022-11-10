@@ -118,7 +118,7 @@ onMounted(() => {
   // 获取皮肤数据
   axios({
     methods:'GET',
-    url: '/demo/skinData.json'
+    url: 'https://prepan.top/bs_m/skinData.json'
   }).then( res => {
     updateTime.value = res.data[0][0]
     contributor.value = res.data[0][1]
