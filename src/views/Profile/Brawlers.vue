@@ -25,7 +25,7 @@
         <div class="select-item">{{curGear}}</div>
       </n-popselect>
       <div class="select-item">
-        <span class="brawlerNum">{{brawlers.length}}</span>  /  60
+        <span class="brawlerNum">{{brawlers.length}}</span>  /  61
       </div>
     </div>
     <!--筛选-->

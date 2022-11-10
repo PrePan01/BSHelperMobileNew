@@ -93,7 +93,7 @@ function choose(item, index){
 let brawlersList = []
 function createBrawlersList(){
   let num = 0
-  for(let i = 0; i <= 59; i++,num++){
+  for(let i = 0; i <= 60; i++,num++){
     if(num===33 || num===55) num++
     brawlersList[i] = 16000000 + num
   }
@@ -118,7 +118,7 @@ onMounted(() => {
   // 获取皮肤数据
   axios({
     methods:'GET',
-    url: 'https://prepan.top/bs_m/skinData.json'
+    url: '/demo/skinData.json'
   }).then( res => {
     updateTime.value = res.data[0][0]
     contributor.value = res.data[0][1]
