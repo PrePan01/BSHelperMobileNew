@@ -59,5 +59,5 @@ export default function (data){
     else if(data == 16000059 || data === 'OTIS' || data === 57 ) return '奥蒂斯'
     else if(data == 16000060 || data === 'SAM' || data === 58 ) return '山姆'
     else if(data == 16000061 || data === 'GUS' || data === 59 ) return '格斯'
-    else if(data == 16000062 || data === 'BUSTER' || data === 60 ) return '格斯'
+    else if(data == 16000062 || data === 'BUSTER' || data === 60 ) return '巴斯特'
 }

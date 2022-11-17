@@ -8,7 +8,7 @@
     <h2 class="t-title">正在进行</h2>
     <div v-for="(item, index) in eventData.active" :key="item.map.name">
       <EventTitle
-          :mode="item.map.gameMode.name"
+          :mode="item.map.gameMode.hash"
           :map="item.map.name"
           class="title"
           :time="[0,item.endTime]"
@@ -18,7 +18,7 @@
     <h2 class="t-title">即将到来</h2>
     <div v-for="(item, index) in eventData.upcoming" :key="item.map.name">
       <EventTitle
-          :mode="item.map.gameMode.name"
+          :mode="item.map.gameMode.hash"
           :map="item.map.name"
           class="title"
           :time="[1,item.startTime]"

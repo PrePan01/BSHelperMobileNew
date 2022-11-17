@@ -10,7 +10,7 @@ export default function (mode) {
         case 'Solo-Showdown': { return '荒野决斗' }
         case 'Duo-Showdown': { return '双人荒野决斗' }
         case 'Duels': { return 'Duels' }
-        case 'Wipeout': { return 'Wipeout' }
+        case 'Wipeout': { return '积分争夺赛' }
         case 'Payload': { return 'Payload' }
         case 'BasketBrawl': { return '乱斗篮球' }
         case 'Boss-Fight': { return '首领之战' }
