@@ -9,7 +9,7 @@
 import {NCountdown} from 'naive-ui'
 import {computed, ref} from "vue";
 
-let targetDate = ref('2023/01/02 16:00')
+let targetDate = ref('2023/03/06 16:00')
 
 let duration = computed(() => {
   let now = new Date()

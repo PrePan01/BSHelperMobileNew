@@ -49,4 +49,8 @@ let {data, topIndex} = props
 .trophyIcon,.trophies {
   vertical-align: middle;
 }
+.trophies {
+  font-size: 4.5vw;
+  margin-left: 2px;
+}
 </style>

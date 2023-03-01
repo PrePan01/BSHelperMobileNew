@@ -1,26 +1,41 @@
 <template>
   <div :key="nanoid()">
     <n-back-top :right="20" :visibility-height="500"/>
-    <NavBar
+    <!--<NavBar
         :title="ModeTranslate(mapData.mode) +' / '+ MapTranslate(mapData.map)"
         left-text="返回"
         left-arrow
         @click-left="onClickLeft"
     >
       <template #right>
+        <n-button size="small">地图</n-button>
         <n-dropdown :options="options" @select="handleSelect">
           <n-button  size="small">{{curOp}}</n-button>
         </n-dropdown>
       </template>
-    </NavBar>
-
+    </NavBar>-->
+    <!--导航条-->
+    <div class="topnav-warp">
+      <TopNav :to="'/events'" :title="ModeTranslate(mapData.mode) +' / '+ MapTranslate(mapData.map)" v-show="ModeTranslate(mapData.mode)"/>
+      <TopNav :to="'/events'" :title="'数据加载中...'" v-show="!ModeTranslate(mapData.mode)"/>
+      <n-popover trigger="hover">
+        <template #trigger>
+          <n-button class="map-btn" size="small">地图</n-button>
+        </template>
+        <img :src="'https://prepan.top/bsAssets/map/'+ mapData.id + '.png'" alt="" class="map-pic">
+      </n-popover>
+    </div>
     <Loading class="loading"  color="#1989fa" v-if="showLoading"/>
-
     <n-spin size="large" v-if="curLoading" class="curLoading">
       <template #description>
         正在获取当前对战数据...
       </template>
     </n-spin>
+    <Scatter
+      v-if="mapData.stats"
+      :data="mapData.scatterData"
+      class="scat"
+    ></Scatter>
 
     <n-data-table
         v-if="mapData.stats"
@@ -42,13 +57,16 @@
 import {useStore} from "@/store";
 let store = useStore()
 import {nanoid} from 'nanoid'
-import {NDataTable, NBackTop, NButton, NDropdown, NSpin} from 'naive-ui'
+import {NDataTable, NBackTop, NButton, NDropdown, NSpin,NPopover} from 'naive-ui'
 import {defineComponent, h, onBeforeMount, reactive, ref} from "vue";
 import { NavBar, Loading  } from 'vant';
 import router from "@/router";
 import MapTranslate from "@/utils/MapTranslate";
 import ModeTranslate from "@/utils/ModeTranslate";
 import axios from "axios";
+import TopNav from '@/components/TopNav'
+import Scatter from '@/components/Scatter'
+
 
 let showLoading = ref(false)
 
@@ -225,7 +243,9 @@ const colTeam = [
 let mapData = reactive({
   stats: null,
   mode: null,
-  map: null
+  map: null,
+  id: null,
+  scatterData: null
 })
 
 let target
@@ -240,8 +260,19 @@ function getData() {
   }).then (res =>{
     tmp = res.data[target.type][target.index]
     mapData.stats = tmp.map.stats
-    mapData.mode = tmp.map.gameMode.name
+
+    let stmp = []
+    mapData.stats.forEach(item => {
+      stmp.push({
+        value: [item.winRate, item.useRate],
+        symbol: `image://https://prepan.top/bsAssets/brawlerPins/happy/${item.brawler}.png`
+      })
+    })
+    mapData.scatterData = stmp
+
+    mapData.mode = tmp.map.gameMode.hash
     mapData.map = tmp.map.name
+    mapData.id = tmp.map.id
     showLoading.value = false
     curLoading.value = false
   })
@@ -274,5 +305,22 @@ function onClickLeft() {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+.topnav-warp {
+  position: relative;
+}
+.map-btn {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+}
+.map-pic {
+  width: 70vw;
+}
+.scat {
+  margin-top: -15px;
+  margin-bottom: 10px;
 }
 </style>

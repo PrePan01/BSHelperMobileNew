@@ -4,6 +4,7 @@
   </n-message-provider>
   <n-config-provider :theme-overrides="themeOverrides">
     <div class="appwarp">
+      <UpdateInfo/>
       <router-view></router-view>
     </div>
   </n-config-provider>
@@ -15,6 +16,11 @@ import { NMessageProvider, NConfigProvider } from "naive-ui";
 import {useStore} from "@/store";
 const store = useStore()
 
+// 更新提示
+import UpdateInfo from "@/components/UpdateInfo";
+import {onMounted} from "vue";
+
+// NaiveUI主题配置
 const themeOverrides = {
   Slider: {
     fillColor: '#FFCC01',
@@ -22,6 +28,15 @@ const themeOverrides = {
     handleSize: '10px',
   }
 }
+
+// 设备判断
+onMounted(() => {
+  if(document.body.clientWidth > document.body.clientHeight) {
+    window.$message.warning(
+        (() => <div>本页为移动端战绩小助手，请使用竖屏访问，大屏设备请访问：<a href="https://prepan.top/bs_p">战绩小助手PC端</a></div>),
+        { duration: 20000 })
+  }
+})
 </script>
 
 
@@ -31,6 +46,7 @@ const themeOverrides = {
   --defeat: rgb(245,108,108);
   --draw: rgb(64,158,255);
   --mvp: rgb(255,224,88);
+  --noResult: rgb(64,106,223);
   --lv11: rgb(255,204,1);
 }
 @keyframes bgmove {

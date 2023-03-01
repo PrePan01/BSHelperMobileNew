@@ -1,18 +1,12 @@
 <template>
   <NSpin :show="store.showSpin" stroke="rgb(255,255,1)" :size="60">
     <div class="warp">
-      <van-dialog
-          :show="showUpdateInfo"
-          confirm-button-color="#2A59DB"
-          confirm-button-text="知道啦"
-          @confirm="closeUpdate"
-      >
-        <UpdateInfo/>
-      </van-dialog>
+      <!--<img src="@/assets/lantern.png" alt="" class="lantern">-->
+      <!--<img src="@/assets/lantern.png" alt="" class="lantern lantern__move">-->
       <img src="../assets/logo.png" alt="" class="logo">
       <WordSwiper class="ws"/>
       <div class="searchWarp">
-        <input type="text" class="searchInput" v-model="tag">
+        <input type="text" class="searchInput" v-model.trim="tag">
         <span class="searchBtn" @click="search('cur')">搜索</span>
       </div>
       <div class="history" v-if="history">
@@ -43,35 +37,16 @@ import {useStore} from "@/store";
 const store = useStore()
 import {useRouter} from 'vue-router'
 const router = useRouter()
-import {Dialog} from "vant";
-import UpdateInfo from "@/components/UpdateInfo";
-
-const VanDialog = Dialog.Component;
-let showUpdateInfo = ref(true)
-if(localStorage.getItem('update1101') === 'false') {
-  showUpdateInfo.value = false
-}
-function closeUpdate() {
-  showUpdateInfo.value = false
-  localStorage.setItem('update1101', 'false')
-  localStorage.removeItem('update1022')
-}
 
 let history = localStorage.getItem('search')
 
 function search(type) {
-  if(!history && tag.value === undefined) {
-    window.$message.error('请输入玩家代码')
-  } else {
-    if(!history) {
-      localStorage.setItem('search', tag.value)
-    }
+  if(type === 'his')  tag.value = history
+  if(!tag.value) window.$message.error('请输入玩家代码')
+  else {
+    if(type === 'cur')  localStorage.setItem('search', tag.value)
     store.router = router
-    if(type === 'cur') {
-      store.searchPlayer(tag.value)
-    } else {
-      store.searchPlayer(history)
-    }
+    store.searchPlayer(tag.value)
   }
 }
 
@@ -100,10 +75,91 @@ let showSpin = ref(false)
   flex-direction: column;
   justify-content: space-evenly;
 }
+@keyframes lantern {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(10deg);
+  }
+  20% {
+    transform: rotate(20deg);
+  }
+  30% {
+    transform: rotate(-10deg);
+  }
+  40% {
+    transform: rotate(-30deg);
+  }
+  50% {
+    transform: rotate(-25deg);
+  }
+  70% {
+    transform: rotate(5deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  80% {
+    transform: rotate(0deg);
+  }
+  90% {
+    transform: rotate(20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes lantern1 {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(10deg);
+  }
+  20% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(-10deg);
+  }
+  40% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-20deg);
+  }
+  70% {
+    transform: rotate(0deg);
+  }
+  80% {
+    transform: rotate(20deg);
+  }
+  90% {
+    transform: rotate(25deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.lantern {
+  position: absolute;
+  top: -5px;
+  right: 10%;
+  width: 20vw;
+  filter: drop-shadow(2px 2px 2px rgba(0,0,0,.3));
+  transition: .3s;
+  transform-origin: 50% 0;
+  animation: lantern1 10s infinite linear;
+}
+.lantern__move {
+  right: 20%;
+  animation: lantern 5s infinite linear;
+}
 .logo {
   width: 80%;
   display: block;
-  margin: 16vh 0 2vh 14%;
+  margin: 15vh 0 2vh 14%;
 }
 .ws {
   min-height: 100px;

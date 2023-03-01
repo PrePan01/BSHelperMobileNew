@@ -6,8 +6,9 @@
 import bTrans from '../../utils/BrawlerTranslate'
 import * as echarts from 'echarts'
 import {onMounted, ref} from "vue";
+import pieSerise from '@/utils/pieSerise'
 let pieWarp = ref(null)
-let props = defineProps(['brawlersData', 'title'])
+let props = defineProps(['brawlersData', 'title', 'battleResult'])
 let brawler = []
 let handlerIcon = []
 let handlerIconTmp = Object.keys(props.brawlersData).sort((a, b) => {
@@ -17,6 +18,21 @@ for(let item in props.brawlersData) {
   brawler.push({value: props.brawlersData[item], name: bTrans(item)})
 }
 brawler.sort((a, b) => b.value - a.value)
+function sortBattleResult() {
+  let t = []
+  let _bResult = props.battleResult
+  brawler.forEach(i => {
+    if(!t.includes(i.name)) {
+      t.push(i.name)
+    }
+  })
+  _bResult.sort((a, b) =>
+    t.indexOf(a.name) - t.indexOf(b.name)
+  )
+
+  return _bResult
+}
+
 handlerIconTmp.forEach(item => {
   handlerIcon.push(
       {
@@ -25,6 +41,15 @@ handlerIconTmp.forEach(item => {
       }
   )
 })
+
+
+function getSerise() {
+  if(props.title === '我的成分') {
+    return pieSerise(brawler, sortBattleResult())
+  } else {
+    return [pieSerise(brawler)[0]]
+  }
+}
 
 onMounted(() => {
   let myChart = echarts.init(pieWarp.value);
@@ -67,45 +92,7 @@ onMounted(() => {
         }
       }
     },
-    series: [
-      {
-        name: 'Access From',
-        type: 'pie',
-        right: '4%',
-        radius: ['30%', '70%'],
-        avoidLabelOverlap: false,
-        label: {
-          show: true,
-          position: 'outside',
-          color: 'white',
-          lineHeight: 18,
-          formatter: (params => {
-            return `${params.name}`
-          })
-        },
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
-          }
-        },
-        labelLine: {
-          show: true,
-          length2: '2'
-        },
-        labelLayout: {
-          hideOverlap: true
-        },
-        data: brawler,
-        tooltip: {
-          trigger: 'item',
-          formatter: ((params) => {
-            return `${params.name}：${params.value}次`
-          })
-        }
-      }
-    ]
+    series: getSerise()
   };
   myChart.setOption(option)
 })

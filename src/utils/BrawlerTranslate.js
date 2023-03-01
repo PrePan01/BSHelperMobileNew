@@ -60,4 +60,7 @@ export default function (data){
     else if(data == 16000060 || data === 'SAM' || data === 58 ) return '山姆'
     else if(data == 16000061 || data === 'GUS' || data === 59 ) return '格斯'
     else if(data == 16000062 || data === 'BUSTER' || data === 60 ) return '巴斯特'
+    else if(data == 16000063 || data === 'CHESTER' || data === 61 ) return '切斯特'
+    else if(data == 16000064 || data === 'GRAY' || data === 62 ) return '戈雷'
+    else if(data == 16000065 || data === 'MANDY' || data === 63 ) return '曼迪'
 }

@@ -27,6 +27,7 @@
         <img src="../../assets/duoSD.png" alt="" >
         <span>双鸡胜场：{{playerData.duoVictories}}</span>
       </p>
+      <span class="toMore" @click="s">查看更多 ></span>
     </div>
   </div>
 </template>
@@ -40,6 +41,20 @@ let props = defineProps(['data'])
 let {tag} = props.data
 let searchTag = tag.slice(1)
 let playerData = ref({})
+
+import {useRouter} from "vue-router";
+const router = useRouter()
+
+import {useStore} from "@/store";
+const store = useStore()
+let emits = defineEmits(['closePopover'])
+function closePopover() {
+  emits('closePopover')
+}
+function s() {
+  closePopover()
+  store.searchPlayer(tag.split('#')[1])
+}
 
 onMounted(() => {
   showSpin.value = true
@@ -74,5 +89,14 @@ onMounted(() => {
 }
 .detail p img,span {
   vertical-align: middle;
+}
+.toMore {
+  color: rgb(42,89,219);
+  font-size: 14px;
+  margin-top: 6px;
+  display: inline-block;
+  border: 1px solid rgb(42,89,219);
+  padding: 3px 6px;
+  border-radius: 5px;
 }
 </style>

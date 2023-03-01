@@ -4,6 +4,16 @@
     <p>{{BattleTimeTrans(battleTime)[1]}}</p>
     <p v-if="battle.trophyChange">杯数 {{battle.trophyChange>=0?'+':''}}{{battle.trophyChange}}</p>
   </div>
+  <div v-if="battle.mode ==='bigGame'" class="biggame">
+    <h2>天选英雄</h2>
+    <Player
+        :player="battle.bigBrawler"
+        :key="battle.bigBrawler.tag"
+        class="bigplayer"
+        :trophies="battle.bigBrawler.brawler.trophies"
+        @click="showPop(p.tag)"
+    />
+  </div>
   <div class="sdwarp">
     <n-popover trigger="manual" v-for="p in battle.players" :key="p.tag" :show="showPopover && showPopoverIndex === p.tag">
       <template #trigger>
@@ -16,7 +26,7 @@
         />
       </template>
       <div>
-        <PlayerPopover :data="p"/>
+        <PlayerPopover :data="p"  @closePopover="closePopover"/>
       </div>
     </n-popover>
   </div>
@@ -38,7 +48,9 @@ function showPop(data) {
   showPopover.value = !(showPopover.value)
   showPopoverIndex.value = data
 }
-
+function closePopover() {
+  showPopover.value = false
+}
 </script>
 
 <style scoped>
@@ -59,5 +71,14 @@ function showPop(data) {
 }
 .player {
   width: 18vw;
+}
+.biggame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+.bigplayer {
+  margin-left: 25px;
 }
 </style>

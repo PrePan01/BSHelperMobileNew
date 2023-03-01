@@ -31,10 +31,6 @@ export default [
     ],
     [
         {
-            label: "全部装备",
-            value: "全部装备"
-        },
-        {
             label: '迅捷',
             value: '迅捷'
         },
@@ -61,6 +57,10 @@ export default [
         {
             label: '速充',
             value: '速充'
+        },
+        {
+            label: '神话',
+            value: '神话'
         }
     ]
 ]

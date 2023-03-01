@@ -1,4 +1,5 @@
 <template>
+  <TopNav :to="'/more'" :title="'战队查询'"/>
   <div class="club-warp">
     <!--加载遮罩-->
     <Overlay :show="showOverlay" z-index="100">
@@ -47,6 +48,7 @@
 import axios from 'axios'
 import {Overlay, Search, Loading } from 'vant'
 import {ref} from "vue";
+import TopNav from '@/components/TopNav'
 
 let clubTag = ref('')
 let clubData = ref({})

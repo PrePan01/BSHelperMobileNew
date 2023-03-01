@@ -1,5 +1,7 @@
 <template>
+  <TopNav  :to="'/more'" :title="'加入我们'"></TopNav>
   <img src="../assets/joinUs.png" alt="" style="width: 100vw;">
+
 
   <div style="text-align: center">
     <Button type="primary" block class="joinBtn" @click="joinGlobal">加入国际服战队</Button>
@@ -11,6 +13,7 @@
 
 <script setup>
 import {Button} from 'vant'
+import TopNav from '@/components/TopNav'
 
 function copyGroupNum(){
   new Clipboard('.joinGroupBtn')

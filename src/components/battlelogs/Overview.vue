@@ -74,7 +74,7 @@ function bgc(i) {
     i.battle.rank > 5? result = 'defeat': result = 'victory'
     return {backgroundColor: 'var(--' + result + ')'}
   }
-  else return {backgroundColor: 'var(--' + i.battle.result + ')'}
+  else return {backgroundColor: 'var(--' + (i.battle.result || 'noResult') + ')'}
 }
 </script>
 

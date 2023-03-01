@@ -1,6 +1,6 @@
 <template>
   <n-back-top :right="20" :visibility-height="500" :bottom="70"/>
-  <div class="container">
+  <div ref="containerRef" class="container">
     <div class="top3">
       <TopBrawler :data="top3[2]" :topIndex="3"/>
       <TopBrawler :data="top3[0]" :topIndex="1"/>
@@ -21,11 +21,18 @@
           :options="gearOps"
           size="medium"
           scrollable
+          multiple
+          @update:value="updateGearSort"
       >
-        <div class="select-item">{{curGear}}</div>
+        <div class="select-item">
+          <div v-if="Array.isArray(curGear) && curGear.length">
+            <span v-for="i in curGear" :key="i" class="gear-sort">{{i}}</span>
+          </div>
+          <span v-else>全部装备</span>
+        </div>
       </n-popselect>
       <div class="select-item">
-        <span class="brawlerNum">{{brawlers.length}}</span>  /  61
+        <span class="brawlerNum">{{brawlers.length}}</span>  /  64
       </div>
     </div>
     <!--筛选-->
@@ -36,7 +43,6 @@
           :step="1" :min="1" :max="11" range
       />
     </div>
-
     <Collapse v-model="activeNames">
       <CollapseItem
           :name="item.id"
@@ -85,6 +91,8 @@
       </CollapseItem>
     </Collapse>
   </div>
+
+
 </template>
 
 <script setup>
@@ -95,15 +103,32 @@ import TopBrawler from '../../components/TopBrawler'
 import {useStore} from "@/store";
 const store = useStore()
 
-const activeNames = ref(['1']);
 
+const activeNames = ref(['1']);
 import BrawlerTranslate from "@/utils/BrawlerTranslate";
 import bSortOptions from "@/utils/brawlerSortOptions";
 
 let curSort = ref('默认排序')
 const sortOps = bSortOptions[0]
-let curGear = ref('全部装备')
+let curGear = ref('')
 const gearOps = bSortOptions[1]
+
+
+// 装备排序
+function sortByGear(_b, name) {
+  return _b.filter(i => i.gears.some(gear => gear.name === name))
+}
+
+// 装备排序更新选项
+function updateGearSort() {
+  if(Array.isArray(curGear.value) ) {
+    if(curGear.value.length > 6) {
+      curGear.value.pop()
+      window.$message.info('最多同时选择6个装备')
+    }
+  }
+}
+
 let brawlers = computed(() => {
   let b = store.profile.brawlers
 
@@ -137,8 +162,33 @@ let brawlers = computed(() => {
   }
   else b.sort((a, b) => a.id - b.id)
 
-  if(curGear.value !== '全部装备') {
-    switch (curGear.value) {
+  if(Array.isArray(curGear.value) && curGear.value.length) {
+    if(curGear.value.includes('迅捷')) {
+      b = sortByGear(b, 'SPEED')
+    }
+    if(curGear.value.includes('恢复')) {
+      b = sortByGear(b, 'HEALTH')
+    }
+    if(curGear.value.includes('强攻')) {
+      b = sortByGear(b, 'DAMAGE')
+    }
+    if(curGear.value.includes('洞察')) {
+      b = sortByGear(b, 'VISION')
+    }
+    if(curGear.value.includes('护盾')) {
+      b = sortByGear(b, 'SHIELD')
+    }
+    if(curGear.value.includes('巧手')) {
+      b = sortByGear(b, 'RELOAD SPEED')
+    }
+    if(curGear.value.includes('速充')) {
+      b = sortByGear(b, 'SUPER CHARGE')
+    }
+    if(curGear.value.includes('神话')) {
+      let tmp = ['SPEED', 'HEALTH', 'DAMAGE', 'VISION', 'SHIELD', 'RELOAD SPEED', 'SUPER CHARGE']
+      b = b.filter(i => i.gears.some(gear => !tmp.includes(gear.name)))
+    }
+    /*switch (curGear.value) {
       case '迅捷': {
         b = b.filter(i => i.gears.some(gear => gear.name === 'SPEED'))
         break
@@ -167,7 +217,7 @@ let brawlers = computed(() => {
         b = b.filter(i => i.gears.some(gear => gear.name === 'SUPER CHARGE'))
         break
       }
-    }
+    }*/
   }
 
   if(levelSlider.value[0] !== 1 || levelSlider.value[1] !== 11) {
@@ -206,6 +256,9 @@ let lvSliderCurNum = computed(() => {
   padding : 20px 0;
   align-items: center;
   justify-content: space-evenly;
+}
+.gear-sort {
+  padding: 0 5px;
 }
 .selectWarp {
   width: 100%;
@@ -288,4 +341,6 @@ let lvSliderCurNum = computed(() => {
   text-align: center;
   font-size: 14px;
 }
+
+
 </style>

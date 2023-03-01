@@ -34,6 +34,9 @@ export default function (data) {
     else if (en === 'G.G. Mortuary') return '荒漠废屋'
     else if (en === 'Hot Potato') return '烫手山芋'
     else if (en === 'Twisted Gems') return '变形宝石'
+    else if (en === 'Kaboom Canyon') return '轰隆峡谷'
+    else if (en === 'Pit Stop') return '维修站台'
+    else if (en === 'Snaked Assault') return '蜿蜒袭击'
     // 赏金
     else if (en === 'Bull Pen') return '喧闹牛圈'
     else if (en === 'Dry Season') return '酷热地带'
@@ -42,6 +45,11 @@ export default function (data) {
     else if (en === 'Layer Cake') return '夹心蛋糕'
     else if (en === 'Overgrown Canyon') return '蔓生大峡谷'
     else if (en === 'Heat Wave') return '热浪滚滚'
+    else if (en === 'Temple Ruins') return '神殿废墟'
+    else if (en === 'Hideout') return '草丛迷踪'
+    else if (en === 'Canal Grande') return '大运河'
+    else if (en === 'Excel') return '格格不入'
+    else if (en === '') return '格格不入'
     // 机甲
     else if (en === 'Some Assembly Required') return '等待组装'
     // 热区
@@ -52,6 +60,10 @@ export default function (data) {
     else if (en === 'Ring of Fire') return '灼热火圈'
     else if (en === 'Double Sided') return '双边并行'
     else if (en === 'Temple of Boom') return '斗域奇兵'
+    else if (en === 'Quarter Pounder') return '其乐无穷'
+    else if (en === 'Controller Chaos') return '摇杆争霸'
+    else if (en === 'Split') return '一分为二'
+    else if (en === 'Open Zone') return '开放区域'
     // 淘汰赛
     else if (en === 'Goldarm Gulch') return '金臂峡谷'
     else if (en === 'Crimewater') return '危险水域'
@@ -60,8 +72,20 @@ export default function (data) {
     else if (en === "Belle's Rock") return '摇滚贝尔'
     else if (en === 'Splash Out') return '大手大脚'
     else if (en === 'Riverside') return '长河堤岸'
+    else if (en === 'New Perspective') return '全新视角'
+    else if (en === 'X Marks the Spot') return '宝藏标记'
+    else if (en === 'Out in the Open') return '空旷荒野'
     // 篮球
     else if (en === 'Ball Hog') return '首席球迷'
+    // 宝石
+    else if (en === 'Hard Rock Mine') return '硬石矿井'
+    else if (en === 'Crystal Arcade') return '水晶街机厅'
+    else if (en === 'Gem Fort') return '宝石要塞'
+    else if (en === 'Undermine') return '十面埋伏'
+    else if (en === 'Deep Diner') return '深渊餐厅'
+    else if (en === 'Double Swoosh') return '嗖嗖作响'
+    else if (en === 'Minecart Madness') return '矿车飞驰'
+
 
     else return en
 }

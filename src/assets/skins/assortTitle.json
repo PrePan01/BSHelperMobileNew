@@ -1,0 +1,15 @@
+[
+  ["星光商店", "linear-gradient(to right,rgb(255,3,204), rgb(202,7,214))", "starpoint"],
+  ["星光联赛", "linear-gradient(to right,rgb(0,128,254) 50%, rgb(238,18,15) 0)", "powerleague"],
+  ["战队商店", "linear-gradient(to right,rgb(248,99,99), rgb(238,27,57))", "club_coin"],
+  ["通行证", "linear-gradient(to right,rgb(253,228,79), rgb(251,202,29))", "brawlpass"],
+  ["圣诞节", "rgb(0,109,255)", "brawlmas"],
+  ["万圣节", "linear-gradient(to right,rgb(255,108,57), rgb(221,42,23))", "brawloween"],
+  ["农历新年", "linear-gradient(to right,rgb(254,205,104),rgb(240,127,100), rgb(228,57,96))", "cny"],
+  ["情人节", "rgb(255,44,133)", "brawlentine"],
+  ["LINE 联名", "rgb(0,0,0)", "brownFriends"],
+  ["拉美大师联赛", "rgb(173,125,181)", "ML_LA"],
+  ["SC MAKE", "linear-gradient(to right,rgb(255,190,175), rgb(226,63,147))", "scmake"],
+  ["乱斗周年庆", "rgb(251,121,23)", "sc10y"],
+  ["全球总决赛", "linear-gradient(to right,rgb(251,225,156), rgb(237,117,31))", "BSC"]
+]

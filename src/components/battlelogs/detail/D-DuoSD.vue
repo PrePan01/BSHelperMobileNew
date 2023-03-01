@@ -18,7 +18,7 @@
             />
           </template>
           <div>
-            <PlayerPopover :data="p"/>
+            <PlayerPopover :data="p"  @closePopover="closePopover"/>
           </div>
         </n-popover>
       </div>
@@ -42,7 +42,9 @@ function showPop(data) {
   showPopover.value = !(showPopover.value)
   showPopoverIndex.value = data
 }
-
+function closePopover() {
+  showPopover.value = false
+}
 </script>
 
 <style scoped>

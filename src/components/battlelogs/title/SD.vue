@@ -32,6 +32,9 @@ let {battleTime, event, battle} = props.data
 import {result} from '@/utils/battle/BattleResult'
 
 let myBrawler = computed(() => {
+  if(battle.bigBrawler && battle.bigBrawler.tag === store.profile.tag) {
+    return [battle.bigBrawler.brawler.id, battle.bigBrawler.brawler.trophies, battle.bigBrawler.brawler.power]
+  }
   for(let p of battle.players) {
     if(p.tag === store.profile.tag) {
       return [p.brawler.id, p.brawler.trophies, p.brawler.power]
