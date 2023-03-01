@@ -12,6 +12,7 @@ import ClubSearch from "@/views/ClubSearch";
 import Events from "@/views/Events";
 import EventDetail from "@/views/EventDetail";
 import BrawlerData from "@/views/BrawlerData";
+import TacticsBoard from "@/views/TacticsBoard";
 
 const routes = [
   {
@@ -78,6 +79,11 @@ const routes = [
     path: '/brawlerData',
     name: 'brawlerData',
     component: BrawlerData,
+  },
+  {
+    path: '/tactics_board',
+    name: 'tactics_board',
+    component: TacticsBoard,
   }
 ]
 
