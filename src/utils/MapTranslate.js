@@ -24,8 +24,10 @@ export default function (data) {
     else if (en === 'Penalty Kick') return '点球大战'
     else if (en === 'Well Cut') return '带球过人'
     else if (en === 'Warped Beach') return '弯曲海滩'
-    else if (en === 'Off the Line') return '超出界外'
+    else if (en === 'Off The Line') return '超出界外'
     else if (en === 'Hairdryer Treatment') return '场边指导'
+    else if (en === 'Iron Corridor') return '圆周运动'
+    else if (en === 'Circular Motion') return '铁制障碍'
     // 金库
     else if (en === 'Safe Zone') return '安全区域'
     else if (en === 'Forks Out') return '迂回岔路'
@@ -37,6 +39,9 @@ export default function (data) {
     else if (en === 'Kaboom Canyon') return '轰隆峡谷'
     else if (en === 'Pit Stop') return '维修站台'
     else if (en === 'Snaked Assault') return '蜿蜒袭击'
+    else if (en === 'Cover Crowd') return '掩护众人'
+    else if (en === 'Offset Heist') return '对角攻防'
+    else if (en === 'Center Control') return '中心控制'
     // 赏金
     else if (en === 'Bull Pen') return '喧闹牛圈'
     else if (en === 'Dry Season') return '酷热地带'
@@ -49,7 +54,9 @@ export default function (data) {
     else if (en === 'Hideout') return '草丛迷踪'
     else if (en === 'Canal Grande') return '大运河'
     else if (en === 'Excel') return '格格不入'
-    else if (en === '') return '格格不入'
+    else if (en === 'Crossroads') return '十字路口'
+    else if (en === 'Nowhere To Hide') return '无处可藏'
+    else if (en === 'Iron Standoff') return '钢铁对峙'
     // 机甲
     else if (en === 'Some Assembly Required') return '等待组装'
     // 热区
@@ -57,9 +64,9 @@ export default function (data) {
     else if (en === 'Mosh Pit') return '冲撞区域'
     else if (en === 'Dueling Beetles') return '甲虫决斗'
     else if (en === 'Parallel Plays') return '平行游戏'
-    else if (en === 'Ring of Fire') return '灼热火圈'
+    else if (en === 'Ring Of Fire') return '灼热火圈'
     else if (en === 'Double Sided') return '双边并行'
-    else if (en === 'Temple of Boom') return '斗域奇兵'
+    else if (en === 'Temple Of Boom') return '斗域奇兵'
     else if (en === 'Quarter Pounder') return '其乐无穷'
     else if (en === 'Controller Chaos') return '摇杆争霸'
     else if (en === 'Split') return '一分为二'
@@ -69,14 +76,18 @@ export default function (data) {
     else if (en === 'Crimewater') return '危险水域'
     else if (en === 'Flaring Phoenix') return '烈焰凤凰'
     else if (en === 'Flowing Springs') return '潺潺溪流'
-    else if (en === "Belle's Rock") return '摇滚贝尔'
+    else if (en === "Belles Rock") return '摇滚贝尔'
     else if (en === 'Splash Out') return '大手大脚'
     else if (en === 'Riverside') return '长河堤岸'
     else if (en === 'New Perspective') return '全新视角'
-    else if (en === 'X Marks the Spot') return '宝藏标记'
-    else if (en === 'Out in the Open') return '空旷荒野'
+    else if (en === 'X Marks The Spot') return '宝藏标记'
+    else if (en === 'Out In The Open') return '空旷荒野'
     // 篮球
     else if (en === 'Ball Hog') return '首席球迷'
+    else if (en === 'Green Meadows') return '绿色草甸'
+    else if (en === 'Iron Curtain') return '钢铁屏障'
+    else if (en === 'Basket Fort') return '篮球堡垒'
+    else if (en === 'Dancing Roof') return '闪亮舞台'
     // 宝石
     else if (en === 'Hard Rock Mine') return '硬石矿井'
     else if (en === 'Crystal Arcade') return '水晶街机厅'
@@ -85,6 +96,14 @@ export default function (data) {
     else if (en === 'Deep Diner') return '深渊餐厅'
     else if (en === 'Double Swoosh') return '嗖嗖作响'
     else if (en === 'Minecart Madness') return '矿车飞驰'
+    else if (en === 'Solid Center') return '坚固中心'
+    else if (en === 'Four Doors') return '四门洞开'
+    else if (en === 'Acute Angle') return '锋利锐角'
+    // 擂台赛
+    else if (en === 'Mogura Tataki') return '打地鼠'
+    else if (en === 'Four Lakes') return '湖区激战'
+    else if (en === 'Grim Island') return '凄凉岛屿'
+    else if (en === 'Iron Core') return '钢铁核心'
 
 
     else return en

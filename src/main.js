@@ -11,7 +11,7 @@ let app = createApp(App)
 let brawlersList = []
 function createBrawlersList(){
     let num = 0
-    for(let i = 0; i <= 63; i++,num++){
+    for(let i = 0; i <= 65; i++,num++){
         if(num===33 || num===55) num++
         brawlersList[i] = 16000000 + num
     }
