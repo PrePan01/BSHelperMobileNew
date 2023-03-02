@@ -71,6 +71,9 @@ export default function (data) {
     else if (en === 'Controller Chaos') return '摇杆争霸'
     else if (en === 'Split') return '一分为二'
     else if (en === 'Open Zone') return '开放区域'
+    else if (en === 'Iron Cover') return '钢铁掩体'
+    else if (en === 'Rush Hour') return '交通拥堵'
+    else if (en === 'Triumvirate') return '三位一体'
     // 淘汰赛
     else if (en === 'Goldarm Gulch') return '金臂峡谷'
     else if (en === 'Crimewater') return '危险水域'
@@ -82,6 +85,8 @@ export default function (data) {
     else if (en === 'New Perspective') return '全新视角'
     else if (en === 'X Marks The Spot') return '宝藏标记'
     else if (en === 'Out In The Open') return '空旷荒野'
+    else if (en === 'Step By Step') return '步步为营'
+    else if (en === 'Healthy Middle Ground') return '疗伤中场'
     // 篮球
     else if (en === 'Ball Hog') return '首席球迷'
     else if (en === 'Green Meadows') return '绿色草甸'

@@ -18,6 +18,13 @@ module.exports = defineConfig({
           '^/demo': ''
         }
       },
+      "/prepan": {
+        changeOrigin: true,
+        target: 'https://prepan.top',
+        pathRewrite: {
+          '^/prepan': ''
+        }
+      },
       "/ucloud": {
         changeOrigin: true,
         target: 'http://117.50.197.50:8081',

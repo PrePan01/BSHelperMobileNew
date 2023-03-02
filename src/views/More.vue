@@ -1,5 +1,9 @@
 <template>
   <div class="warp">
+    <h2 @click="$router.push('/tactics_board')">
+      <img src="../assets/tb.png" alt="" class="h-icon">
+      战术板
+    </h2>
     <h2 @click="$router.push('/events')">
       <img src="../assets/flag.png" alt="" class="h-icon">
       天梯活动
@@ -18,10 +22,6 @@
       <img src="../assets/house.png" alt="" class="h-icon">
       战队查询
     </h2>
-    <h2 @click="$router.push('/join')">
-      <img src="../assets/club_icon.png" alt="" class="h-icon" style="width: 17vw">
-      加入我们
-    </h2>
     <div class="warp-b">
       <!--<h3 @click="openNewPage('https://www.tapechat.net/uu/6CL6M5/QW3O5XXP?uid=5779398')">问题反馈</h3>-->
       <h3 @click="openNewPage('https://wj.qq.com/s2/11777083/4b84/')">问题反馈</h3>
@@ -37,7 +37,7 @@
           <img src="@/assets/alipay.png" alt="" style="width: 190px;display: block">
         </div>
       </n-popconfirm>
-      <h3 @click="openNewPage('http://prepan.top/download/latest.apk')">游戏下载</h3>
+      <h3 @click="$router.push('/join')">加入我们</h3>
     </div>
   </div>
 
@@ -74,7 +74,7 @@ function toSkin() {
 }
 .warp h2,h3 {
   width: 65vw;
-  padding-right: 15vw;
+  padding-left: 15vw;
   height: 15vh;
   line-height: 15vh;
   font-size: 38px;
@@ -82,19 +82,19 @@ function toSkin() {
   box-shadow: 3px 3px black;
   text-shadow: 3px 3px 1px black;
   color: white;
-  text-align: right;
+  text-align: center;
   transform: skew(-3deg);
   letter-spacing: 6px;
-  margin: 2vh 1vw;
+  margin: 2vh 0;
   position: relative;
   overflow: hidden;
 }
 .warp h3 {
   height: 12vw;
   letter-spacing: 2px;
+  padding: 0;
   line-height: 12vw;
   width: 40vw;
-  padding-right: 0;
   text-align: center;
   font-size: 20px;
   border: 2px solid black;

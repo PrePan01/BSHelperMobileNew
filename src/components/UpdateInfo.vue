@@ -3,7 +3,6 @@
       :show="showUpdateInfo"
       confirm-button-color="#2A59DB"
       confirm-button-text="知道啦"
-      :confirmButtonDisabled="confirmButtonDisabled"
       @confirm="closeUpdate"
   >
     <div class="infoWarp">
@@ -11,11 +10,11 @@
       <div style="text-align: center;color: #18A058">
         <img src="../assets/pic1.png" alt="" style="width: 100%;border-radius: 16px">
         <div style="color: rgb(230,87,22)">
-          <!--<h2>🎉新功能出现！</h2>-->
-          <h2>🎉战绩小助手一周年！</h2>
-          <h3>😘填写小调查，帮助我们做得更好</h3>
+          <h2>🎉新功能出现！</h2>
+          <h3>【战术板】正式上线！</h3>
+          <h3>地图图鉴、英雄标注···</h3>
         </div>
-        <div class="feedback" v-if="showFeedback">
+        <!--<div class="feedback" v-if="showFeedback">
           <h4>你觉得战绩小助手好用吗？</h4>
           <n-radio-group size="large" v-model:value="feedbackScore" name="radiobuttongroup1"  @update:value="updateFeedbackScore">
             <n-radio-button
@@ -33,7 +32,7 @@
         </div>
         <div v-if="!showFeedback">
           <h3>感谢您的反馈！</h3>
-        </div>
+        </div>-->
       </div>
       <!--<video
           muted
@@ -53,7 +52,7 @@ import {Dialog} from "vant";
 import {NRadioGroup, NRadioButton, NInput, NButton} from "naive-ui"
 const VanDialog = Dialog.Component;
 
-let updateDate = 'update0225_1'
+let updateDate = 'update0302'
 
 let showUpdateInfo = ref(false)
 
