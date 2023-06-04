@@ -7,7 +7,7 @@
       <Overview/>
       <n-collapse
           display-directive="show"
-          :default-expanded-names="['1']"
+          :default-expanded-names="[]"
           @item-header-click="changeCol"
       >
         <template #arrow>
@@ -59,7 +59,7 @@
 
       <Collapse v-model="activeNames" class="blgs--col">
         <CollapseItem
-            v-for="item in blgs"
+            v-for="(item, index) in blgs"
             :key="item.battleTime"
             class="citem"
             :style="bLeft(item)"
@@ -69,6 +69,7 @@
             <DDuels :data="item" v-if="item.battle.mode === 'duels'"/>
             <DSD :data="item" v-if="tModes[1].includes(item.battle.mode)"/>
             <DTvsT :data="item" v-if="!tModes.flat().includes(item.battle.mode)"/>
+            <div v-if="!tModes.flat().includes(item.battle.mode)" class="to_battle_more" @click="toBattleMore(item, index)">查看详情</div>
           </div>
           <template #title>
             <DuoSD :data="item" v-if="item.battle.mode === 'duoShowdown'"/>
@@ -82,7 +83,6 @@
   </NSpin>
   <Empty v-if="Object.keys(store.profile).length === 0"/>
   <n-back-top :right="20" :visibility-height="500" :bottom="70"/>
-  <BackMe class="backme"/>
   <BottomNav/>
 </template>
 
@@ -103,7 +103,9 @@ import DSD from '../components/battlelogs/detail/D-SD'
 import DDuoSD from '../components/battlelogs/detail/D-DuoSD'
 import DDuels from '../components/battlelogs/detail/D-Duels'
 import Empty from '../components/Empty'
-import BackMe from '@/components/BackMe'
+
+import {useRouter} from 'vue-router'
+const router = useRouter()
 
 import {useStore} from "@/store";
 const store = useStore()
@@ -130,10 +132,11 @@ let blgs = computed(() => {
     case '积分争夺赛': return selectByMode('wipeout')
     case '乱斗篮球': return selectByMode('basketBrawl')
     case '雪中送礼': return selectByMode('snowtelThieves')
+    case '乱斗排球': return selectByMode('volleyBrawl')
   }
 })
 
-let colExpanded = ref(true)
+let colExpanded = ref(false)
 function changeCol(e) {
   colExpanded.value = e.expanded
 }
@@ -200,6 +203,17 @@ function bLeft(item) {
 
 import getBattleBrawlers from "@/utils/GetBattleBrawlers";
 let brawlersData = getBattleBrawlers(store.battlelogs, store.profile.tag)
+
+function toBattleMore(battleData, index) {
+  let players = []
+  battleData.battle.teams.forEach(team => {
+    team.forEach(player => {
+      players.push(player.tag.split('#')[1])
+    })
+  })
+  store.battleDetailPlayers = players
+  router.push({name: 'battleDetail', query: {index}})
+}
 </script>
 
 <style>
@@ -241,6 +255,15 @@ let brawlersData = getBattleBrawlers(store.battlelogs, store.profile.tag)
 }
 .detail {
   padding: 10px 0;
+  text-align: center;
+}
+.to_battle_more {
+  display: inline-block;
+  width: 20vw;
+  padding: 4px;
+  border: 1px solid rgba(255,255,255,.6);
+  text-align: center;
+  border-radius: 4px;
 }
 .carousel {
   position: relative;
@@ -266,10 +289,7 @@ let brawlersData = getBattleBrawlers(store.battlelogs, store.profile.tag)
 .blgs--col {
   margin-top: 10px;
 }
-.backme {
-  position: sticky;
-  bottom: 20vh;
-}
+
 .spinInfo {
   color: rgb(255,255,1);
   margin-top: 20px;

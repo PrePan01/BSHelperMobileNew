@@ -48,6 +48,10 @@ export default function (mode) {
         case 'Snowtel-Thieves': { return '雪中送礼' }
         case 'snowtelThieves': { return '雪中送礼' }
 
+        case 'VolleyBrawl': { return '乱斗排球' }
+        case 'Volley-Brawl': { return '乱斗排球' }
+        case 'volleyBrawl': { return '乱斗排球' }
+
         case 'Hunters': { return 'Hunters' }
         case 'hunters': { return 'Hunters' }
         default: {return mode}

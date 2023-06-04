@@ -1,11 +1,8 @@
-import axios from "axios";
+import officalApi from './officalApi'
 
 export default function (data) {
     return new Promise((res, rej) => {
-        axios({
-            url: `/playStatsApi/v1/battlelog/${data}`,
-            method: 'GET'
-        }).then(battlelogs => {
+        officalApi.get(`/playStatsApi/v1/players/%23${data}/battlelog`).then(battlelogs => {
             if(battlelogs.data.message === '404 Not Found') {
                 window.$message.error('暂时无法获取对战列表，请稍后再试')
                 rej('最近对战搜索失败')

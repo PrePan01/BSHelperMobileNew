@@ -35,6 +35,12 @@
               <div v-for="(price, index) in (Array.isArray(item[2])? item[2]: [item[2]])" :key="index" class="curPrice">
                 <img v-if="price !== 'free' && price !== 'rmb'" :src="require('../../assets/' + price + '.png')" alt="" class="priceIcon">
                 <span>{{(price=== 'ticket'||item[3]==='')?'免费':item[3]}}</span>
+
+                <div class="curPrice" v-if="price === 'gems' && item[3] !== '49' && item[3] !== '299' && item[3] !== '199' && item[7] !== 'nobling'">
+                  <img src="../../assets/bling.png" alt="" class="priceIcon">
+                  <span>{{item[3] === '149'? 5000:item[3] === '79'?2750:1000}}</span>
+                </div>
+
               </div>
             </div>
           </div>
@@ -54,7 +60,7 @@ import { Image as VanImage } from 'vant';
 import { NSpin, NBackTop } from 'naive-ui'
 import router from "@/router";
 import {onMounted, ref} from "vue";
-import assort_data from '@/assets/skins/assortData.json'
+import assort_data from '@/assets/skins/assortData.js'
 import assort_title from '@/assets/skins/assortTitle.json'
 import AssortSkins from '@/components/skin/AssortTitle'
 
@@ -112,12 +118,15 @@ onMounted(() => {
 .skinWarp {
   display: flex;
   flex-wrap: wrap;
-  padding: 20px;
+  padding: 10px;
   justify-content: space-between;
 }
 .skin-item {
-  width: 40vw;
+  width: 45%;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 .picwarp {
   height: 250px;

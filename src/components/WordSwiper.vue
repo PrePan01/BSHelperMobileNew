@@ -10,7 +10,7 @@
 <script setup>
 import {onBeforeUpdate, onMounted, ref} from "vue";
 
-let keyWords = ['个人数据', '最近对战', '皮肤图鉴', '战队查询', '游戏下载', '...']
+let keyWords = ['个人数据', '最近对战', '皮肤图鉴', '战术板', '英雄数据', '...']
 
 let words = ref([])
 let word = (el) => {
@@ -42,7 +42,7 @@ onMounted(() => {
 
 .word {
   height: 100px;
-  font-size: 36px;
+  font-size: 44px;
   font-weight: bold;
   position: absolute;
   text-align: center;

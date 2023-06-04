@@ -93,6 +93,5 @@ export default function (data, tag) {
         }
     })
 
-    console.log( [myBrawlersTmp, teamMateBrawlersTmp, battleResult,enemyBrawlersTmp])
     return [myBrawlersTmp, teamMateBrawlersTmp, battleResult,enemyBrawlersTmp]
 }

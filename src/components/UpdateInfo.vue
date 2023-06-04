@@ -10,37 +10,13 @@
       <div style="text-align: center;color: #18A058">
         <img src="../assets/pic1.png" alt="" style="width: 100%;border-radius: 16px">
         <div style="color: rgb(230,87,22)">
-          <h2>🎉新功能出现！</h2>
-          <h3>【战术板】正式上线！</h3>
-          <h3>地图图鉴、英雄标注···</h3>
+          <h3>🎉新功能出现！</h3>
+          <h3>「我的英雄」优化、皮肤图鉴新增分类、「游戏下载」回归</h3>
+          <h4>更多更新请查看更新日志！</h4>
+          <!--<h3>地图图鉴、英雄标注···</h3>-->
         </div>
-        <!--<div class="feedback" v-if="showFeedback">
-          <h4>你觉得战绩小助手好用吗？</h4>
-          <n-radio-group size="large" v-model:value="feedbackScore" name="radiobuttongroup1"  @update:value="updateFeedbackScore">
-            <n-radio-button
-                v-for="feedbackScore in feedbackScores"
-                :key="feedbackScore.value"
-                :value="feedbackScore.value"
-                :label="feedbackScore.label"
-            />
-          </n-radio-group>
-          <h4>有什么建议或意见吗？</h4>
-          <n-input v-model:value="feedbackText" type="text" placeholder=""/>
-          <n-button round type="primary" class="sub" @click="subFeedback" :disabled="subFeedbackBtn">
-            提交反馈
-          </n-button>
-        </div>
-        <div v-if="!showFeedback">
-          <h3>感谢您的反馈！</h3>
-        </div>-->
       </div>
-      <!--<video
-          muted
-          autoplay
-          src="https://prepan.top/updateInfo/update1101.mp4"
-          style="width: 100%"
-          loop
-      ></video>-->
+
     </div>
   </van-dialog>
 </template>
@@ -52,7 +28,7 @@ import {Dialog} from "vant";
 import {NRadioGroup, NRadioButton, NInput, NButton} from "naive-ui"
 const VanDialog = Dialog.Component;
 
-let updateDate = 'update0302'
+let updateDate = 'update0428'
 
 let showUpdateInfo = ref(false)
 

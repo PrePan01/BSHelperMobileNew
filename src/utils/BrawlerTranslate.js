@@ -65,4 +65,6 @@ export default function (data){
     else if(data == 16000065 || data === 'MANDY' || data === 63 ) return '曼迪'
     else if(data == 16000066 || data === 'R-T' || data === 64 ) return '阿尔缇'
     else if(data == 16000067 || data === 'WILLOW' || data === 65 ) return '薇洛'
+    else if(data == 16000068 || data === 'MAISIE' || data === 66 ) return '麦茜'
+    else if(data == 16000069 || data === 'HANK' || data === 67 ) return '汉克'
 }

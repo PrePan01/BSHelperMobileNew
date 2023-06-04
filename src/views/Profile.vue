@@ -17,7 +17,8 @@
       </Tabs>
     </div>
     <Empty v-if="Object.keys(store.profile).length === 0"/>
-    <BottomNav></BottomNav>
+
+  <BottomNav></BottomNav>
     <div class="calc" v-if="active === 1" :style="{right: calcActive?0: '-92vw'}">
       <img src="@/assets/close.png"
            @click="calcActive = !calcActive" alt=""
@@ -58,4 +59,5 @@ let calcActive = ref(false)
 .calc__main {
   width: 92vw;
 }
+
 </style>

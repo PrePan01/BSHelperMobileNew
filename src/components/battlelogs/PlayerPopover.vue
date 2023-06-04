@@ -46,6 +46,7 @@ import {useRouter} from "vue-router";
 const router = useRouter()
 
 import {useStore} from "@/store";
+import officalApi from "@/api/officalApi";
 const store = useStore()
 let emits = defineEmits(['closePopover'])
 function closePopover() {
@@ -58,10 +59,7 @@ function s() {
 
 onMounted(() => {
   showSpin.value = true
-  axios({
-    url: `/playStatsApi/${searchTag}`,
-    method: 'GET'
-  }).then(res => {
+  officalApi.get(`/playStatsApi/v1/players/%23${searchTag}`).then(res => {
     playerData.value = res.data
     showSpin.value = false
   })

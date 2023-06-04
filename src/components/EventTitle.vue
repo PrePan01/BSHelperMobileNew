@@ -27,14 +27,16 @@ let props = defineProps(['mode', 'map', 'time'])
 let {mode, map, time} = props
 let modes =
     ['Gem-Grab', 'Brawl-Ball', 'Bounty', 'Heist', 'Hot-Zone', 'Siege', 'Knockout',
-      'Solo-Showdown', 'Duo-Showdown', 'Duels', 'Wipeout', 'Payload', 'Basket-Brawl', 'Invasion', 'Hunters', 'Last-Stand', 'Boss-Fight','Big-Game', 'Snowtel-Thieves']
+      'Solo-Showdown', 'Duo-Showdown', 'Duels', 'Wipeout', 'Payload', 'Basket-Brawl',
+      'Invasion', 'Hunters', 'Last-Stand', 'Boss-Fight','Big-Game', 'Snowtel-Thieves', 'Robo-Rumble','Volley-Brawl'
+    ]
 
 let bgc = computed(() => {
   let c
   switch (mode) {
     case 'Gem-Grab': { c = 'rgb(216,82,255)'; break }
     case 'Brawl-Ball': { c = 'rgb(154,177,253)'; break }
-    case 'Bounty': { c = 'rgb(0,206,254)'; break }
+    case 'Bounty': { c = 'rgb(255,188,32)'; break }
     case 'Heist': { c = 'rgb(247,131,28)'; break }
     case 'Hot-Zone': { c = 'rgb(226,59,79)'; break }
     case 'Siege': { c = 'rgb(239,78,49)'; break }
@@ -81,17 +83,15 @@ let bgc = computed(() => {
 }
 .eventsTitle{
   color: white;
-  -webkit-text-stroke: 0.7px black;
   font-weight: bold;
   font-size: 25px;
-  text-shadow: 0 2px 2px black;
+  text-shadow: 2px 2px 1px black;
 }
 .mapTitle{
   color: white;
-  -webkit-text-stroke: 0.7px black;
   font-weight: bold;
   font-size: 16px;
-  text-shadow: 0 2px 2px black;
+  text-shadow: 2px 2px 1px black;
 }
 </style>
 

@@ -18,10 +18,10 @@ let show = ref(true)
 
 function s() {
   store.searchPlayer(his)
+  show.value = false
 }
 
 onMounted(() => {
-
   if(!cur || cur === '#' + his) {
     show.value = false
   }

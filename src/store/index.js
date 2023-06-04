@@ -1,7 +1,7 @@
 import {defineStore} from "pinia";
-import axios from "axios";
 import __searchBattlelogs from '@/api/searchBattlelogs'
 import __searchPlayer from '@/api/searchPlayer'
+import {useRouter} from "vue-router";
 
 export const useStore = defineStore('main', {
     state: () => {
@@ -10,7 +10,8 @@ export const useStore = defineStore('main', {
             battlelogs: [],
             showSpin: false,
             eventDetail: [],
-            router: void 0
+            battleDetailPlayers: [],
+            router: useRouter()
         }
     },
     actions: {

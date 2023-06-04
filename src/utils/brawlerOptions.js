@@ -63,4 +63,6 @@ export default [
     {value: 16000063, label: '切斯特'},
     {value: 16000064, label: '戈雷'},
     {value: 16000065, label: '曼迪'},
+    {value: 16000066, label: '阿尔缇'},
+    {value: 16000067, label: '薇洛'},
 ]

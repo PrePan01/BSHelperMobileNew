@@ -1,11 +1,9 @@
-import axios from "axios";
+import officalApi from './officalApi'
+
 
 export default function (data) {
     return new Promise((res, rej) => {
-        axios({
-            url: `/playStatsApi/${data}`,
-            method: 'GET'
-        }).then(player=> {
+        officalApi.get(`/playStatsApi/v1/players/%23${data}`).then(player=> {
             if(player.data.message === '404 Not Found') {
                 window.$message.error(
                     (() =>

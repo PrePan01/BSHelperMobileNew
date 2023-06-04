@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     <div class="pinfo">
-      <img :src="'https://prepan.top/bsAssets/avatar/' + icon.id + '.png'" alt="暂无头像" class="avatar">
+      <img :src="'https://prepan.top/bsAssets/avatar/' + profile.icon.id + '.png'" alt="暂无头像" class="avatar">
       <div>
-        <p class="name">{{name}}</p>
+        <p class="name">{{profile.name}}</p>
         <p class="tag">
-          {{showTag?tag:'********'}}
+          {{showTag?profile.tag:'********'}}
           <n-button quaternary circle color="#ffffff" @click="showTag = !showTag">
             <template #icon>
               <n-icon><EyeOutline v-if="showTag"/> <EyeOffOutline v-else/> </n-icon>
@@ -14,21 +14,23 @@
         </p>
       </div>
     </div>
+    <BackMe class="backme"/>
+
     <!--当前杯数-->
     <div class="trophy">
       <div class="trophy-l">
         <img src="../../assets/trophy_cur.png" alt="" class="trophy-l--icon">
         <span class="trophy-l--title">当前杯数</span>
-        <span class="trophies" :style='{"--number": `"${dataChange[0] && dataChange[0] != 0? dataChange[0]: ""}"`}'>{{trophies}}</span>
+        <span class="trophies" :style='{"--number": `"${dataChange[0] && dataChange[0] != 0? dataChange[0]: ""}"`}'>{{profile.trophies}}</span>
       </div>
       <div class="trophy-r">
         <div>
           <img src="../../assets/trophy_cur.png" alt="" class="trophy-r--icon">
           <span class="trophy-r--title">最高奖杯</span>
-          <h4 class="highest">{{highestTrophies}}</h4>
+          <h4 class="highest">{{profile.highestTrophies}}</h4>
         </div>
         <div class="difTro">
-           [ {{highestTrophies - trophies === 0?'': '- '}}{{highestTrophies - trophies}} ]
+           [ {{profile.trophies - profile.highestTrophies}} ]
         </div>
       </div>
     </div>
@@ -42,38 +44,26 @@
       <div class="win-number__item">
         <img src="../../assets/soloSD.png" alt="">
         <span>单鸡胜场</span>
-        <p class="lidata win-number__data2" :style='{"--solo": `"${dataChange[2] && dataChange[2] != 0? dataChange[2]: ""}"`}'>{{soloVictories}}</p>
+        <p class="lidata win-number__data2" :style='{"--solo": `"${dataChange[2] && dataChange[2] != 0? dataChange[2]: ""}"`}'>{{profile.soloVictories}}</p>
       </div>
       <div class="win-number__item">
         <img src="../../assets/duoSD.png" alt="">
         <span>双鸡胜场</span>
-        <p class="lidata win-number__data3" :style='{"--duo": `"${dataChange[3] && dataChange[3] != 0? dataChange[3]: ""}"`}'>{{duoVictories}}</p>
+        <p class="lidata win-number__data3" :style='{"--duo": `"${dataChange[3] && dataChange[3] != 0? dataChange[3]: ""}"`}'>{{profile.duoVictories}}</p>
       </div>
     </div>
     <!--详情列表-->
     <ul>
-      <li class="li-item">
-        <div>
-          <img class="li-icon" src="../../assets/icon_player_level.png" alt="">
-          <span>等级</span>
-        </div>
-        <span class="lidata">Lv. {{expLevel}}</span>
-      </li>
-      <li class="li-item">
-        <div>
-          <img class="li-icon" src="../../assets/icon_championship.png" alt="">
-          <span>十五胜挑战</span>
-        </div>
-        <span class="lidata">{{isQualifiedFromChampionshipChallenge? '√': '×'}}</span>
-      </li>
+      <!--奖牌-->
       <li class="li-item">
         <div v-for="(item, index) in trophyranks" :key="index" >
-          <div class="rankItem">
+          <div class="rankItem" v-if="item !== 0">
             <img :src="require(`../../assets/rankIcon/${index}.png`)" alt="">
             <span>{{item}}</span>
           </div>
         </div>
       </li>
+      <!--战力星芒图-->
       <li class="li-item">
         <div class="radar-info">
           <img src="@/assets/button_info.png" @click="showRadarInfo = true" alt="">
@@ -81,8 +71,8 @@
         <n-modal v-model:show="showRadarInfo">
           <div class="radar-info--warp">
             <h2>战力星芒图</h2>
-            <p>黄色 - 当前分类下所有英雄杯数的平均值</p>
-            <p>绿色 - 当前分类下历史最高杯数英雄的杯数值</p>
+            <p style="color: rgb(255,189,32)">黄色 - 当前分类下所有英雄杯数的平均值</p>
+            <p style="color: rgb(70,225,130);">绿色 - 当前分类下历史最高杯数英雄的杯数值</p>
             <p>英雄分类如下：</p>
             <div>
               <div v-for="(item, index) in BrawlerType" :key="index">
@@ -96,36 +86,55 @@
             <p>如果对分类有更好的建议，欢迎反馈！</p>
           </div>
         </n-modal>
-        <Radar :brawlers="brawlers"/>
+        <Radar :brawlers="profile.brawlers"/>
       </li>
-      <li class="li-item">
+      <li class="li-item" style="justify-content: space-between">
         <div>
           <img class="li-icon" src="../../assets/icon_club_league.png" alt="">
           <span>战队</span>
         </div>
         <div>
-          <p class="lidata">{{club.name}}</p>
-          <h5 style="text-align: right">{{club.tag}}</h5>
+          <p class="lidata">{{profile.club.name}}</p>
+          <h5 style="text-align: right">{{profile.club.tag}}</h5>
         </div>
       </li>
       <li class="li-item">
-        <span>荣誉联赛结算后</span>
+        <div class="radar-info">
+          <img src="@/assets/button_info.png" @click="showSeasonEndData = true" alt="">
+        </div>
+        <span style="margin-left: 30px">荣誉联赛结算后</span>
         <SeasonCountdown/>
         <div class="trophyEnd">
           <div>
             <img src="../../assets/trophy_cur.png" alt="">
             <p>
-              <span style="margin-right: 10px">{{TLEnd[0]}}</span>
-              <span>(↓{{trophies-TLEnd[0]}})</span>
+              <span style="margin-right: 10px">{{TLEnd[0][0]}}</span>
+              <span>(↓{{profile.trophies-TLEnd[0][0]}})</span>
             </p>
           </div>
           <div>
-            <img src="../../assets/SeasonEndStarPoints.png" alt="">
-            <span>{{TLEnd[1]}}</span>
+            <img src="../../assets/bling.png" alt="">
+            <span>{{TLEnd[0][1]}}</span>
           </div>
         </div>
+        <n-modal v-model:show="showSeasonEndData">
+          <div class="trophyEnd-warp">
+            <div class="trophyEnd-item" v-for="item in TLEnd[1]" :key="item.brawler">
+              <img :src="('https://prepan.top/bsAssets/brawlerPins/happy/'+ item.brawler +'.png')" alt="" class="trophyEnd--icon">
+              <div class="trophyEnd-bling">
+                <img src="../../assets/trophy_cur.png" alt="" class="trophyEnd--blingicon">
+                <span>{{item.trophies}}</span>
+              </div>
+              <div class="trophyEnd-bling">
+                <img src="../../assets/bling.png" alt="" class="trophyEnd--blingicon">
+                <span>{{item.blings}}</span>
+              </div>
+            </div>
+          </div>
+        </n-modal>
       </li>
     </ul>
+
   </div>
 </template>
 
@@ -134,8 +143,11 @@ import {useStore} from "@/store";
 import {NButton, NIcon, NModal} from 'naive-ui'
 import {EyeOutline, EyeOffOutline} from '@vicons/ionicons5'
 import Radar from '@/components/Radar'
+import BackMe from '@/components/BackMe'
+
 let showTag = ref(true)
 let showRadarInfo = ref(false)
+let showSeasonEndData = ref(false)
 
 import {type as BrawlerType, data as BrawlerTypeData} from '@/utils/BrawlerType'
 let __type = []
@@ -147,42 +159,38 @@ Object.keys(BrawlerTypeData).forEach(i => {
 })
 
 const store = useStore()
-const {
-  tag,
-  name,
-  icon,
-  trophies,
-  highestTrophies,
-  expLevel,
-  soloVictories,
-  duoVictories,
-  isQualifiedFromChampionshipChallenge,
-  brawlers,
-  club
-} = storeToRefs(store).profile.value
+let { profile } = storeToRefs(store)
 
 import trophyRanks from "@/utils/trophyRanks";
-let trophyranks = trophyRanks(brawlers)
+let trophyranks = ref(trophyRanks(profile.value.brawlers))
 
 import trophyLeagueEnd from "@/utils/trophyLeagueEnd";
 import SeasonCountdown from '@/components/SeasonCountdown'
-import {onMounted, ref} from "vue";
+import {onBeforeUpdate, onMounted, ref} from "vue";
 import {storeToRefs} from "pinia";
-let TLEnd = trophyLeagueEnd(brawlers)
+let TLEnd = ref(trophyLeagueEnd(profile.value.brawlers))
 
 let dataChange = ref(['', '', '', ''])
-onMounted(() => {
-  if(localStorage.getItem(`data_change${tag}`)) {
-    let tmp = JSON.parse(localStorage.getItem(`data_change${tag}`))
+function getChangeData() {
+  if(localStorage.getItem(`data_change${profile.value.tag}`)) {
+    let tmp = JSON.parse(localStorage.getItem(`data_change${profile.value.tag}`))
     dataChange.value = [
-        (trophies - tmp[0] > 0? '+': '') + (trophies - tmp[0]),
-        (store.profile['3vs3Victories']? '+': '') + (store.profile['3vs3Victories'] - tmp[1]),
-        (soloVictories - tmp[2]? '+': '') + (soloVictories - tmp[2]),
-        (duoVictories - tmp[3]? '+': '') + (duoVictories - tmp[3])
+      (profile.value.trophies - tmp[0] > 0? '+': '') + (profile.value.trophies - tmp[0]),
+      (store.profile['3vs3Victories']? '+': '') + (store.profile['3vs3Victories'] - tmp[1]),
+      (profile.value.soloVictories - tmp[2]? '+': '') + (profile.value.soloVictories - tmp[2]),
+      (profile.value.duoVictories - tmp[3]? '+': '') + (profile.value.duoVictories - tmp[3])
     ]
   }
-  let dc = [trophies, store.profile['3vs3Victories'], soloVictories, duoVictories]
-  localStorage.setItem(`data_change${tag}`, JSON.stringify(dc))
+  let dc = [profile.value.trophies, store.profile['3vs3Victories'], profile.value.soloVictories, profile.value.duoVictories]
+  localStorage.setItem(`data_change${profile.value.tag}`, JSON.stringify(dc))
+}
+onMounted(() => {
+  getChangeData()
+})
+onBeforeUpdate(() => {
+  getChangeData()
+  trophyranks.value = trophyRanks(profile.value.brawlers)
+  TLEnd.value = trophyLeagueEnd(profile.value.brawlers)
 })
 
 </script>
@@ -208,8 +216,8 @@ onMounted(() => {
 .name {
   font-size: 10vw;
   font-family: 'djvb',serif;
-  max-width: 70vw;
-  overflow:hidden;
+  max-width: 75vw;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space:nowrap;
 }
@@ -319,13 +327,11 @@ onMounted(() => {
 .win-number__data3::after {
   content: var(--duo);
 }
-
-
 .li-item {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 12px 20px;
   border-bottom: 1px solid rgba(40,44,52,0.6);
   font-size: 5vw;
@@ -351,9 +357,8 @@ onMounted(() => {
   margin-right: 8px;
 }
 .rankItem {
-  margin-top: 4px;
+  margin: 4px 10px 0 10px;
   text-align: center;
-  margin-right: 30px;
   width: 30px;
 }
 .li-item:last-child {
@@ -397,5 +402,38 @@ onMounted(() => {
 }
 .trophyEnd img {
   margin-right: 8px;
+}
+.trophyEnd-warp {
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 90%;
+  padding: 10px 4px;
+  justify-content: center
+}
+.trophyEnd-item {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 6px;
+}
+.trophyEnd--icon {
+  height: 60px;
+}
+.trophyEnd-bling * {
+  vertical-align: middle;
+  font-size: 16px;
+  font-family: 'lato', serif;
+  margin: 0 2px;
+}
+.trophyEnd--blingicon {
+  width: 20px;
+}
+.backme {
+  position: absolute;
+  top: 10vh;
+  right: 0;
 }
 </style>

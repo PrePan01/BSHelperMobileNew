@@ -27,6 +27,14 @@ export default [
         {
             label: '最高杯数降序',
             value: '最高杯数降序'
+        },
+        {
+            label: '稀有度升序',
+            value: '稀有度升序'
+        },
+        {
+            label: '稀有度降序',
+            value: '稀有度降序'
         }
     ],
     [

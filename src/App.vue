@@ -34,7 +34,7 @@ onMounted(() => {
   if(document.body.clientWidth > document.body.clientHeight) {
     window.$message.warning(
         (() => <div>本页为移动端战绩小助手，请使用竖屏访问，大屏设备请访问：<a href="https://prepan.top/bs_p">战绩小助手PC端</a></div>),
-        { duration: 20000 })
+        { duration: 5000 })
   }
 })
 </script>

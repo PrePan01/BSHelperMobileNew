@@ -4,6 +4,10 @@
       <img src="../assets/tb.png" alt="" class="h-icon">
       战术板
     </h2>
+    <h2 @click="$router.push('/rank')">
+      <img src="../assets/spike.png" alt="" class="h-icon">
+      排行榜
+    </h2>
     <h2 @click="$router.push('/events')">
       <img src="../assets/flag.png" alt="" class="h-icon">
       天梯活动
@@ -25,7 +29,7 @@
     <div class="warp-b">
       <!--<h3 @click="openNewPage('https://www.tapechat.net/uu/6CL6M5/QW3O5XXP?uid=5779398')">问题反馈</h3>-->
       <h3 @click="openNewPage('https://wj.qq.com/s2/11777083/4b84/')">问题反馈</h3>
-      <h3 @click="openNewPage('https://www.wolai.com/dcq38esZ4mkBvuKPMnQMKz')">更新日志</h3>
+      <h3 @click="openNewPage('https://www.123pan.com/s/REdeVv-4ybsd.html')">游戏下载</h3>
       <n-popconfirm :positive-text="null" :negative-text="null" :show-icon="false" style="box-shadow: 3px 3px black">
         <template #trigger>
           <h3>

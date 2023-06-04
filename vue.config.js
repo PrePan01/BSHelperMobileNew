@@ -6,7 +6,7 @@ module.exports = defineConfig({
     proxy: {
       "/playStatsApi": {
         changeOrigin: true,
-        target: 'https://cr.is-a.dev',
+        target: 'https://api.brawlstars.com',
         pathRewrite: {
           '^/playStatsApi': ''
         }

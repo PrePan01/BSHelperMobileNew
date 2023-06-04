@@ -46,27 +46,14 @@
 <script setup>
 import {getCurrentInstance} from "vue";
 let modes = getCurrentInstance()?.appContext.config.globalProperties.$modes
+import BattleResultData from '@/utils/battle/BattleResultData'
 
 import {useStore} from "@/store";
 const store = useStore()
 let { battlelogs } = store
 
-let battleData = {
-  victory: 0,
-  defeat: 0,
-  draw: 0,
-  mvp: 0
-}
+let battleData = BattleResultData(battlelogs, store.profile.name)
 
-battlelogs.forEach(i => {
-  if(i.battle.rank) {
-    i.battle.rank > 5? battleData.defeat++: battleData.victory++
-  }
-  else battleData[i.battle.result]++
-  if(i.battle.starPlayer?.name === store.profile.name) {
-    battleData.mvp++
-  }
-})
 
 function bgc(i) {
   if(i.battle.rank) {
@@ -106,6 +93,8 @@ function bgc(i) {
   margin-top: 12px;
   align-items: flex-end;
   width: 120px;
+  justify-content: flex-end;
+  margin-right: -10px;
 }
 .bd-ul li{
   width: 60px;

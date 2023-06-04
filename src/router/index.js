@@ -13,6 +13,9 @@ import Events from "@/views/Events";
 import EventDetail from "@/views/EventDetail";
 import BrawlerData from "@/views/BrawlerData";
 import TacticsBoard from "@/views/TacticsBoard";
+import MapRank from "@/views/MapRank";
+import Rank from "@/views/Rank/Rank";
+import BattleDetail from "@/views/BattleDetail";
 
 const routes = [
   {
@@ -84,12 +87,39 @@ const routes = [
     path: '/tactics_board',
     name: 'tactics_board',
     component: TacticsBoard,
+  },
+  {
+    path: '/maprank',
+    name: 'maprank',
+    component: MapRank,
+  },
+  {
+    path: '/rank',
+    name: 'rank',
+    component: Rank,
+  },
+  {
+    path: '/battleDetail',
+    name: 'battleDetail',
+    component: BattleDetail,
   }
 ]
 
 const router = createRouter({
+  mode: 'hash',
   history: createWebHashHistory(),
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  // eslint-disable-next-line
+  if (_hmt) {
+    if (to.path) {
+      // eslint-disable-next-line
+      _hmt.push(['_trackPageview', '/#' + to.fullPath]);
+    }
+  }
+  next();
+});
 
 export default router

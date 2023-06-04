@@ -28,6 +28,8 @@ export default function (data) {
     else if (en === 'Hairdryer Treatment') return '场边指导'
     else if (en === 'Iron Corridor') return '圆周运动'
     else if (en === 'Circular Motion') return '铁制障碍'
+    else if (en === 'Extra Bouncy') return '弹力十足'
+    else if (en === 'Make it Bounce') return '大力弹射'
     // 金库
     else if (en === 'Safe Zone') return '安全区域'
     else if (en === 'Forks Out') return '迂回岔路'
@@ -57,6 +59,7 @@ export default function (data) {
     else if (en === 'Crossroads') return '十字路口'
     else if (en === 'Nowhere To Hide') return '无处可藏'
     else if (en === 'Iron Standoff') return '钢铁对峙'
+    else if (en === 'Snake Prairie') return '蝮蛇草场'
     // 机甲
     else if (en === 'Some Assembly Required') return '等待组装'
     // 热区
@@ -87,6 +90,7 @@ export default function (data) {
     else if (en === 'Out In The Open') return '空旷荒野'
     else if (en === 'Step By Step') return '步步为营'
     else if (en === 'Healthy Middle Ground') return '疗伤中场'
+    else if (en === 'Deep End') return '深水区'
     // 篮球
     else if (en === 'Ball Hog') return '首席球迷'
     else if (en === 'Green Meadows') return '绿色草甸'
@@ -104,11 +108,21 @@ export default function (data) {
     else if (en === 'Solid Center') return '坚固中心'
     else if (en === 'Four Doors') return '四门洞开'
     else if (en === 'Acute Angle') return '锋利锐角'
+    else if (en === 'Rustic Arcade') return '乡趣游乐场'
     // 擂台赛
     else if (en === 'Mogura Tataki') return '打地鼠'
     else if (en === 'Four Lakes') return '湖区激战'
     else if (en === 'Grim Island') return '凄凉岛屿'
     else if (en === 'Iron Core') return '钢铁核心'
+    else if (en === 'Death Loop') return '激斗循环'
+    else if (en === 'Eyes on the Ground') return '稳扎稳打'
+    else if (en === 'Cheeky Chokepoint') return '焦点战区'
+    else if (en === 'Battered Battlefield') return '遗迹战场'
+    // 排球
+    else if (en === 'Isolation Play') return '各自为战'
+    else if (en === 'Victory Road') return '胜利之路'
+    else if (en === 'Smash Land') return '碎裂土地'
+    else if (en === 'Power Alley') return '火爆球场'
 
 
     else return en

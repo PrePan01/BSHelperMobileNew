@@ -32,11 +32,13 @@
 
     <div>
       <ul>
-        <li v-for="(item, index) in clubData.members" class="menber" :key="item.tag">
-          {{item.name}}
-          <div>
-            <img src="../assets/trophy_cur.png" alt="" class="trophy">
-            <span class="memberTro">{{item.trophies}}</span>
+        <li v-for="(item, index) in clubData.members" :key="item.tag">
+          <div class="menber" @click="store.searchPlayer(item.tag.split('#')[1])">
+            {{item.name}}
+            <div >
+              <img src="../assets/trophy_cur.png" alt="" class="trophy">
+              <span class="memberTro">{{item.trophies}}</span>
+            </div>
           </div>
         </li>
       </ul>
@@ -45,10 +47,12 @@
 </template>
 
 <script setup>
-import axios from 'axios'
 import {Overlay, Search, Loading } from 'vant'
 import {ref} from "vue";
 import TopNav from '@/components/TopNav'
+import {useStore} from "@/store";
+import officalApi from "@/api/officalApi";
+const store = useStore()
 
 let clubTag = ref('')
 let clubData = ref({})
@@ -56,13 +60,9 @@ let showOverlay = ref(false)
 
 function search(){
   showOverlay.value = true
-  axios({
-    methods: 'GET',
-    url: '/playStatsApi/clubs/' + clubTag.value,
-  }).then((res) =>{
+  officalApi.get('/playStatsApi/v1/clubs/%23' + clubTag.value).then((res) =>{
     clubData.value = res.data
     showOverlay.value = false
-    console.log(res.data)
   })
 }
 </script>

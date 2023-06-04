@@ -34,7 +34,16 @@ function drawModesSymbol() {
   let pbs = store.battlelogs
   for(let i = pbs.length - 1;i >= 0;i--) {
     if(pbs[i].battle.trophyChange === undefined) {
-      tmp.push(cur)
+      if('players' in pbs[i].battle && pbs[i].battle.players[0].brawlers[0].trophyChange !== undefined) {
+        let myIndex
+        pbs[i].battle.players[0].tag === store.profile.tag? myIndex = 0: myIndex = 1
+        pbs[i].battle.players[myIndex].brawlers.forEach(bitem => {
+          cur = cur + bitem.trophyChange
+        })
+        tmp.push(cur)
+      } else {
+        tmp.push(cur)
+      }
     } else {
       cur = cur + pbs[i].battle.trophyChange
       tmp.push(cur)

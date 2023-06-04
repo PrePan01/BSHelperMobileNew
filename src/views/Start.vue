@@ -1,8 +1,10 @@
 <template>
   <NSpin :show="store.showSpin" stroke="rgb(255,255,1)" :size="60">
+    <!--<n-button class="login" @click="showLogin = true">登录</n-button>
+    <n-modal v-model:show="showLogin" class="login-model">
+      <Login/>
+    </n-modal>-->
     <div class="warp">
-      <!--<img src="@/assets/lantern.png" alt="" class="lantern">-->
-      <!--<img src="@/assets/lantern.png" alt="" class="lantern lantern__move">-->
       <img src="../assets/logo.png" alt="" class="logo">
       <WordSwiper class="ws"/>
       <div class="searchWarp">
@@ -29,7 +31,7 @@
 </template>
 
 <script setup>
-import {NButton, NSpin} from 'naive-ui'
+import {NButton, NSpin, NModal} from 'naive-ui'
 import WordSwiper from '../components/WordSwiper'
 import {ref} from "vue";
 let tag = ref()
@@ -37,6 +39,9 @@ import {useStore} from "@/store";
 const store = useStore()
 import {useRouter} from 'vue-router'
 const router = useRouter()
+import Login from '@/components/user/Login'
+
+let showLogin = ref(true)
 
 let history = localStorage.getItem('search')
 
@@ -63,6 +68,21 @@ let showSpin = ref(false)
     background-position:1000px -1000px;
   }
 }
+
+/*登录*/
+.login {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: white;
+}
+
+.login-model {
+  width: 70vw;
+  background-color: #fff;
+  padding: 20px;
+}
+
 .warp {
   width: 100vw;
   height: 100vh;
@@ -75,87 +95,7 @@ let showSpin = ref(false)
   flex-direction: column;
   justify-content: space-evenly;
 }
-@keyframes lantern {
-  0% {
-    transform: rotate(0deg);
-  }
-  10% {
-    transform: rotate(10deg);
-  }
-  20% {
-    transform: rotate(20deg);
-  }
-  30% {
-    transform: rotate(-10deg);
-  }
-  40% {
-    transform: rotate(-30deg);
-  }
-  50% {
-    transform: rotate(-25deg);
-  }
-  70% {
-    transform: rotate(5deg);
-  }
-  75% {
-    transform: rotate(-5deg);
-  }
-  80% {
-    transform: rotate(0deg);
-  }
-  90% {
-    transform: rotate(20deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-@keyframes lantern1 {
-  0% {
-    transform: rotate(0deg);
-  }
-  10% {
-    transform: rotate(10deg);
-  }
-  20% {
-    transform: rotate(0deg);
-  }
-  30% {
-    transform: rotate(-10deg);
-  }
-  40% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(-20deg);
-  }
-  70% {
-    transform: rotate(0deg);
-  }
-  80% {
-    transform: rotate(20deg);
-  }
-  90% {
-    transform: rotate(25deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-.lantern {
-  position: absolute;
-  top: -5px;
-  right: 10%;
-  width: 20vw;
-  filter: drop-shadow(2px 2px 2px rgba(0,0,0,.3));
-  transition: .3s;
-  transform-origin: 50% 0;
-  animation: lantern1 10s infinite linear;
-}
-.lantern__move {
-  right: 20%;
-  animation: lantern 5s infinite linear;
-}
+
 .logo {
   width: 80%;
   display: block;
