@@ -17,6 +17,9 @@
           {{history}}
         </n-button>
       </div>
+
+      <SeasonCountdown/>
+
       <div class="more">
         <div @click="$router.push('/more')">直接进入</div>
         <div @click="$router.push('/update')">更新日志/公告</div>

@@ -7,9 +7,10 @@
 
 <script setup>
 import {NCountdown} from 'naive-ui'
-import {computed, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
+import axios from "axios";
 
-let targetDate = ref('2023/06/12 17:00')
+let targetDate = ref(null)
 
 let duration = computed(() => {
   let now = new Date()
@@ -18,6 +19,15 @@ let duration = computed(() => {
   } else {
     return new Date(`${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} 16:00`) - now
   }
+})
+
+onMounted(() => {
+  axios({
+    method: 'GET',
+    url: 'https://prepan.top/bs_m/seasonTime.json'
+  }).then(res => {
+    targetDate.value = res.data
+  })
 })
 </script>
 

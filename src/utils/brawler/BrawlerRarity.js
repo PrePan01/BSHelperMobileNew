@@ -65,7 +65,8 @@ let br = {
     '16000065': 'Chromatic',
     '16000066': 'Chromatic',
     '16000067': 'Mythic',
-    '16000068': 'Chromatic'
+    '16000068': 'Chromatic',
+    '16000069': 'Epic'
 }
 let brColor = {
     'Common': 'rgb(148,215,244)',
