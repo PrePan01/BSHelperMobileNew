@@ -17,7 +17,7 @@ import TopNav from '@/components/TopNav'
 
 function copyGroupNum(){
   new Clipboard('.joinGroupBtn')
-  window.$message.info('复制成功！')
+  window.$message.info('复制成功')
 }
 function joinGlobal(){
   window.open('https://link.brawlstars.com/invite/band/cn?tag=RQV28LYC&token=ntnymehk')
