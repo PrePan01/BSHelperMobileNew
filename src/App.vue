@@ -13,7 +13,7 @@
 <script setup>
 import MessageApi from "./components/Message-api.vue";
 import { NMessageProvider, NConfigProvider } from "naive-ui";
-import {useStore} from "@/store";
+import { useStore } from "@/store";
 const store = useStore()
 
 // 更新提示

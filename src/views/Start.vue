@@ -27,7 +27,7 @@
     </div>
     <template #description>
       <div class="spinInfo">
-        正在获取远方的数据
+        正在获取远方的数据..
       </div>
     </template>
   </NSpin>
